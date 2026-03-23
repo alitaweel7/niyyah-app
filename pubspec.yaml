@@ -1,0 +1,54 @@
+name: aya_unlock
+description: "Open with intention — a spiritual app that gates social media behind Quran and Dua reading."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+  go_router: ^14.8.1
+  drift: ^2.22.1
+  sqlite3_flutter_libs: ^0.5.28
+  path_provider: ^2.1.5
+  path: ^1.9.1
+  flutter_local_notifications: ^18.0.1
+  shared_preferences: ^2.3.4
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+  intl: ^0.20.2
+  google_fonts: ^6.2.1
+  uuid: ^4.5.1
+  equatable: ^2.0.7
+  collection: ^1.19.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.4.14
+  drift_dev: ^2.22.1
+  freezed: ^2.5.8
+  json_serializable: ^6.9.3
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/quran/
+    - assets/fonts/
+    - assets/images/
+
+  fonts:
+    - family: Amiri
+      fonts:
+        - asset: assets/fonts/Amiri-Regular.ttf
+        - asset: assets/fonts/Amiri-Bold.ttf
+          weight: 700
+    - family: AmiriQuran
+      fonts:
+        - asset: assets/fonts/AmiriQuran-Regular.ttf
