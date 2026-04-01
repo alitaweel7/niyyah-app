@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niyyah - Set Your Intention</title>
+    <meta name="description" content="A mindful pause before social media. Read Quran, Duas, and Hadith before opening your apps.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green-deep: #1B4332;
+            --green-mid: #2D6A4F;
+            --green-light: #40916C;
+            --gold: #D4A574;
+            --gold-light: #E8C9A0;
+            --cream: #FAF8F5;
+            --cream-dark: #F0EDE8;
+            --text-primary: #1A1A1A;
+            --text-secondary: #555555;
+            --text-light: #888888;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--cream);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---- Navigation ---- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250, 248, 245, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(27, 67, 50, 0.08);
+            transition: box-shadow 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--green-deep);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green-deep);
+        }
+
+        /* ---- Hero ---- */
+        .hero {
+            padding: 160px 24px 100px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--cream) 0%, #F5F0EB 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(45, 106, 79, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--green-mid);
+            margin-bottom: 24px;
+            padding: 6px 16px;
+            background: rgba(45, 106, 79, 0.08);
+            border-radius: 100px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 6vw, 4.2rem);
+            font-weight: 700;
+            color: var(--green-deep);
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--green-mid);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .app-store-badge img {
+            height: 52px;
+            transition: opacity 0.2s;
+        }
+
+        .app-store-badge:hover img {
+            opacity: 0.85;
+        }
+
+        .hero-secondary-link {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 2px;
+            transition: color 0.2s;
+        }
+
+        .hero-secondary-link:hover {
+            color: var(--green-deep);
+        }
+
+        /* ---- Section base ---- */
+        section {
+            padding: 100px 24px;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 600;
+            color: var(--green-deep);
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 560px;
+            line-height: 1.7;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        /* ---- How It Works ---- */
+        #how-it-works {
+            background: var(--cream);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--green-deep);
+            color: var(--gold-light);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--green-deep);
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ---- Features ---- */
+        #features {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .feature-card {
+            padding: 32px;
+            background: var(--cream);
+            border-radius: 16px;
+            border: 1px solid rgba(27, 67, 50, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(27, 67, 50, 0.08);
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--green-deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--gold-light);
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .feature-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--green-deep);
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ---- Content Section ---- */
+        #content {
+            background: var(--green-deep);
+            color: white;
+        }
+
+        #content .section-label {
+            color: var(--gold);
+        }
+
+        #content .section-title {
+            color: white;
+        }
+
+        #content .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .content-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-top: 64px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 32px 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 500;
+        }
+
+        /* ---- Privacy ---- */
+        #privacy {
+            background: var(--cream);
+        }
+
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .privacy-text .section-label {
+            text-align: left;
+        }
+
+        .privacy-text .section-title {
+            text-align: left;
+        }
+
+        .privacy-text p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .privacy-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--green-mid);
+            text-decoration: none;
+            border-bottom: 1.5px solid var(--gold);
+            padding-bottom: 2px;
+            transition: color 0.2s;
+        }
+
+        .privacy-link:hover {
+            color: var(--green-deep);
+        }
+
+        .privacy-promises {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .promise-item {
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid rgba(27, 67, 50, 0.06);
+        }
+
+        .promise-item h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--green-deep);
+            margin-bottom: 6px;
+        }
+
+        .promise-item p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* ---- Support / FAQ ---- */
+        #support {
+            background: white;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            padding: 24px;
+            background: var(--cream);
+            border-radius: 12px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(27, 67, 50, 0.1);
+        }
+
+        .faq-question {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--green-deep);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question span {
+            font-size: 1.2rem;
+            color: var(--gold);
+            transition: transform 0.2s;
+        }
+
+        .faq-item.open .faq-question span {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .contact-card {
+            padding: 48px;
+            background: var(--green-deep);
+            border-radius: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .contact-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .contact-email {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--gold);
+            color: var(--green-deep);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 100px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .contact-email:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        /* ---- Footer ---- */
+        footer {
+            background: var(--green-deep);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 48px 24px;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            padding-top: 28px;
+            margin-top: 28px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.8rem;
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 900px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .content-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .privacy-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .support-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 140px 20px 80px;
+            }
+
+            section {
+                padding: 72px 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .privacy-promises {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card {
+                padding: 36px 24px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* ---- Email Signup ---- */
+        .signup {
+            background: var(--green-deep);
+            color: white;
+            padding: 96px 40px;
+            text-align: center;
+        }
+
+        .signup .section-label {
+            color: var(--gold);
+        }
+
+        .signup .section-title {
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .signup-subtitle {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.1rem;
+            max-width: 520px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .signup-form {
+            display: flex;
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .signup-form input[type="email"] {
+            flex: 1;
+            padding: 14px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .signup-form input[type="email"]::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .signup-form input[type="email"]:focus {
+            border-color: var(--gold);
+        }
+
+        .signup-form button {
+            padding: 14px 28px;
+            background: var(--gold);
+            color: var(--green-deep);
+            border: none;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            white-space: nowrap;
+        }
+
+        .signup-form button:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        .signup-note {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .signup-success {
+            display: none;
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .signup {
+                padding: 72px 20px;
+            }
+
+            .signup-form {
+                flex-direction: column;
+            }
+
+            .signup-form button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">Niyyah</a>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#content">Content</a></li>
+                <li><a href="#privacy">Privacy</a></li>
+                <li><a href="#support">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-label">A mindful pause before social media</span>
+            <h1>Set Your <em>Intention</em></h1>
+            <p>Read Quran verses, supplications, and prophetic teachings before opening your apps. Replace mindless scrolling with moments of reflection.</p>
+            <div class="hero-cta">
+                <a href="#" class="app-store-badge" aria-label="Download on the App Store">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+                </a>
+                <a href="#how-it-works" class="hero-secondary-link">See how it works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-label">How It Works</span>
+                <h2 class="section-title">A gentle gate between you and distraction</h2>
+                <p class="section-subtitle">Niyyah creates a calm reading experience every time you reach for social media. Three simple steps to more intentional screen time.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Apps</h3>
+                    <p>Select which apps you want to pause before opening. Instagram, TikTok, YouTube, X, and more.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Read Before You Scroll</h3>
+                    <p>When you open a gated app, Niyyah presents a calm reading experience with Quran, Duas, or Hadith for 1 to 10 minutes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Continue Mindfully</h3>
+                    <p>After your reading time, the app unlocks temporarily. You have set your intention and earned your scroll.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-label">Features</span>
+                <h2 class="section-title">Designed for your daily practice</h2>
+                <p class="section-subtitle">Everything you need for a meaningful spiritual pause, crafted with care and attention to detail.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>Continuous Reading</h3>
+                    <p>Pick up exactly where you left off. Your reading progress is saved automatically across every session.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Flexible Timing</h3>
+                    <p>Set your reading duration from 1 to 10 minutes. Start small and build your way up over time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    </div>
+                    <h3>Prayer Time Notifications</h3>
+                    <p>Location-based prayer times with Hijri calendar, Friday Surah Al-Kahf reminders, and morning and evening adhkar.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <h3>Progress and Streaks</h3>
+                    <p>Track your reading history and build daily streaks. Watch your consistency grow over time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    </div>
+                    <h3>Light and Dark Mode</h3>
+                    <p>Beautiful, calm design with Islamic manuscript art. Choose the theme that suits your preference.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3>Complete Privacy</h3>
+                    <p>All data stays on your device. No accounts, no tracking, no ads. Your privacy is sacred.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content / Stats -->
+    <section id="content">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-label">Islamic Content</span>
+                <h2 class="section-title">A rich library at your fingertips</h2>
+                <p class="section-subtitle">Authentic content sourced with care, presented in a beautiful reading experience.</p>
+            </div>
+            <div class="content-stats">
+                <div class="stat-card">
+                    <div class="stat-number">114</div>
+                    <div class="stat-label">Surahs in full Uthmani script</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Translation languages</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Authentic Duas with sources</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">870+</div>
+                    <div class="stat-label">Hadith from Bukhari and Muslim</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy -->
+    <section id="privacy">
+        <div class="section-inner">
+            <div class="privacy-grid">
+                <div class="privacy-text">
+                    <span class="section-label">Privacy Promise</span>
+                    <h2 class="section-title">Your data stays on your device</h2>
+                    <p>Niyyah has no servers, no cloud, and no user accounts. Everything you read and every setting you choose stays entirely on your phone. We cannot see it, we do not collect it, and we will never sell it.</p>
+                    <p>No analytics, no advertising SDKs, no third-party trackers of any kind. This is a spiritual product, and your privacy is not an afterthought.</p>
+                    <a href="privacy.html" class="privacy-link">Read our full privacy policy</a>
+                </div>
+                <div class="privacy-promises">
+                    <div class="promise-item">
+                        <h4>No Tracking</h4>
+                        <p>Zero analytics, no Google or Facebook SDKs, no usage tracking of any kind.</p>
+                    </div>
+                    <div class="promise-item">
+                        <h4>No Accounts</h4>
+                        <p>No sign-up required. We have no way to identify you, by design.</p>
+                    </div>
+                    <div class="promise-item">
+                        <h4>No Ads, Ever</h4>
+                        <p>No advertisements, no sponsored content, no ad networks. Never.</p>
+                    </div>
+                    <div class="promise-item">
+                        <h4>No Data Sharing</h4>
+                        <p>Nothing is sent off your device. Nothing is sold or shared with anyone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Signup -->
+    <section class="signup" id="updates">
+        <div class="section-inner" style="max-width: 640px; margin: 0 auto;">
+            <span class="section-label">Stay Connected</span>
+            <h2 class="section-title">Get updates on new features</h2>
+            <p class="signup-subtitle">Be the first to know about new content, features, and improvements. No spam, just meaningful updates.</p>
+            <form class="signup-form" id="signupForm" onsubmit="return handleSignup(event)">
+                <input type="email" id="signupEmail" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p class="signup-note">We respect your privacy. Unsubscribe anytime.</p>
+            <p class="signup-success" id="signupSuccess">Thank you for subscribing. We will be in touch.</p>
+        </div>
+    </section>
+
+    <!-- Support -->
+    <section id="support">
+        <div class="section-inner">
+            <div class="support-grid">
+                <div>
+                    <span class="section-label">Support</span>
+                    <h2 class="section-title" style="margin-bottom: 32px;">Frequently asked questions</h2>
+                    <div class="faq-list">
+                        <div class="faq-item open">
+                            <div class="faq-question">
+                                How does Niyyah work?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">When you open a gated app like Instagram or TikTok, Niyyah intercepts the launch and presents a calm reading screen. You spend your chosen amount of time reading Quran, Duas, or Hadith. After your reading time is complete, the app unlocks for you to use.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Which apps can I gate?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">You can choose any app installed on your device. Popular choices include Instagram, TikTok, YouTube, X (Twitter), Snapchat, and Reddit, but you have full control over which apps require a reading pause.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Does Niyyah collect any of my data?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">No. All data stays entirely on your device. Niyyah has no servers, no accounts, and no analytics. We cannot see what you read, when you read, or which apps you use. Your privacy is a core promise, not an afterthought.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Is the Quran text authentic?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">Yes. The Quran text is sourced from the Tanzil Project (tanzil.net) in Uthmani script, with translations available in 9 languages. The English translation uses the widely respected Sahih International edition.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Is the app free?
+                                <span>+</span>
+                            </div>
+                            <div class="faq-answer">Niyyah is free to download with no in-app purchases. There are no ads and no premium tiers. The app is built as a spiritual product, not a commercial one.</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="contact-card">
+                        <h3>Need help?</h3>
+                        <p>If you have questions, feedback, or run into any issues, we would love to hear from you.</p>
+                        <a href="mailto:privacy@ayaunlock.com" class="contact-email">privacy@ayaunlock.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">Niyyah</div>
+            <ul class="footer-links">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#privacy">Privacy</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="#support">Support</a></li>
+            </ul>
+            <div class="footer-copy">
+                Niyyah by Ali Mustafa. Quran text provided by Tanzil.net under CC-BY-3.0 license.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                const wasOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!wasOpen) item.classList.add('open');
+            });
+        });
+
+        // Email signup handler
+        function handleSignup(e) {
+            e.preventDefault();
+            const email = document.getElementById('signupEmail').value;
+            const form = document.getElementById('signupForm');
+            const success = document.getElementById('signupSuccess');
+            const button = form.querySelector('button');
+
+            button.textContent = 'Sending...';
+            button.disabled = true;
+
+            fetch('https://formsubmit.co/ajax/ali.taweel7@gmail.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({ email: email, _subject: 'New Niyyah Signup' })
+            }).then(response => {
+                if (response.ok) {
+                    form.style.display = 'none';
+                    success.style.display = 'block';
+                } else {
+                    // Fallback: open mailto
+                    window.location.href = 'mailto:ali.taweel7@gmail.com?subject=Niyyah%20Updates%20Signup&body=Please%20add%20me%20to%20the%20Niyyah%20updates%20list.%20Email:%20' + encodeURIComponent(email);
+                    button.textContent = 'Subscribe';
+                    button.disabled = false;
+                }
+            }).catch(() => {
+                // Fallback: open mailto
+                window.location.href = 'mailto:ali.taweel7@gmail.com?subject=Niyyah%20Updates%20Signup&body=Please%20add%20me%20to%20the%20Niyyah%20updates%20list.%20Email:%20' + encodeURIComponent(email);
+                button.textContent = 'Subscribe';
+                button.disabled = false;
+            });
+
+            return false;
+        }
+    </script>
+
+</body>
+</html>
+
