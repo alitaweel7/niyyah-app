@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/di/providers.dart';
+import '../../../core/quran/basmala.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../l10n/app_strings.dart';
 import '../../../data/datasources/quran/quran_database.dart';
@@ -819,11 +820,32 @@ class _GateScreenState extends ConsumerState<GateScreen> {
         for (int i = 0; i < ayahs.length; i++) ...[
           if (i > 0) const SizedBox(height: 28),
 
-          // Arabic ayah
+          // Basmala header at the start of a surah (its own centered line),
+          // except Al-Fatiha (where it is ayah 1) and At-Tawbah (no Basmala).
+          if (ayahs[i].ayah == 1 && showBasmalaHeader(ayahs[i].surah)) ...[
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: Text(
+                kBasmala,
+                style: TextStyle(
+                  fontFamily: 'Amiri',
+                  fontSize: _fontSize - 4,
+                  height: 1.8,
+                  color: isDark
+                      ? AppColors.arabicTextDark
+                      : AppColors.arabicTextLight,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(height: 22),
+          ],
+
+          // Arabic ayah (Basmala stripped from ayah 1 — shown above instead)
           Directionality(
             textDirection: TextDirection.rtl,
             child: Text(
-              '${ayahs[i].textUthmani} ﴿${_toArabicNum(ayahs[i].ayah)}﴾',
+              '${stripLeadingBasmala(ayahs[i].surah, ayahs[i].textUthmani)} ﴿${_toArabicNum(ayahs[i].ayah)}﴾',
               style: TextStyle(
                 fontFamily: 'Amiri',
                 fontSize: _fontSize,
