@@ -186,6 +186,280 @@ class $UserPreferencesTable extends UserPreferences
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _notifyPrayerTimesMeta = const VerificationMeta(
+    'notifyPrayerTimes',
+  );
+  @override
+  late final GeneratedColumn<bool> notifyPrayerTimes = GeneratedColumn<bool>(
+    'notify_prayer_times',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_prayer_times" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifyPrayerAdvanceMinutesMeta =
+      const VerificationMeta('notifyPrayerAdvanceMinutes');
+  @override
+  late final GeneratedColumn<int> notifyPrayerAdvanceMinutes =
+      GeneratedColumn<int>(
+        'notify_prayer_advance_minutes',
+        aliasedName,
+        false,
+        type: DriftSqlType.int,
+        requiredDuringInsert: false,
+        defaultValue: const Constant(0),
+      );
+  static const VerificationMeta _notifyFridayKahfMeta = const VerificationMeta(
+    'notifyFridayKahf',
+  );
+  @override
+  late final GeneratedColumn<bool> notifyFridayKahf = GeneratedColumn<bool>(
+    'notify_friday_kahf',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_friday_kahf" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifyFastingDaysMeta = const VerificationMeta(
+    'notifyFastingDays',
+  );
+  @override
+  late final GeneratedColumn<bool> notifyFastingDays = GeneratedColumn<bool>(
+    'notify_fasting_days',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_fasting_days" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifyMorningAdhkarMeta =
+      const VerificationMeta('notifyMorningAdhkar');
+  @override
+  late final GeneratedColumn<bool> notifyMorningAdhkar = GeneratedColumn<bool>(
+    'notify_morning_adhkar',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_morning_adhkar" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifyEveningAdhkarMeta =
+      const VerificationMeta('notifyEveningAdhkar');
+  @override
+  late final GeneratedColumn<bool> notifyEveningAdhkar = GeneratedColumn<bool>(
+    'notify_evening_adhkar',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_evening_adhkar" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifyBedtimeDuaMeta = const VerificationMeta(
+    'notifyBedtimeDua',
+  );
+  @override
+  late final GeneratedColumn<bool> notifyBedtimeDua = GeneratedColumn<bool>(
+    'notify_bedtime_dua',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_bedtime_dua" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifySurahMulkMeta = const VerificationMeta(
+    'notifySurahMulk',
+  );
+  @override
+  late final GeneratedColumn<bool> notifySurahMulk = GeneratedColumn<bool>(
+    'notify_surah_mulk',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_surah_mulk" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifyDuhaReminderMeta =
+      const VerificationMeta('notifyDuhaReminder');
+  @override
+  late final GeneratedColumn<bool> notifyDuhaReminder = GeneratedColumn<bool>(
+    'notify_duha_reminder',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_duha_reminder" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifyTahajjudMeta = const VerificationMeta(
+    'notifyTahajjud',
+  );
+  @override
+  late final GeneratedColumn<bool> notifyTahajjud = GeneratedColumn<bool>(
+    'notify_tahajjud',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_tahajjud" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifyDhikrAfterPrayerMeta =
+      const VerificationMeta('notifyDhikrAfterPrayer');
+  @override
+  late final GeneratedColumn<bool> notifyDhikrAfterPrayer =
+      GeneratedColumn<bool>(
+        'notify_dhikr_after_prayer',
+        aliasedName,
+        false,
+        type: DriftSqlType.bool,
+        requiredDuringInsert: false,
+        defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("notify_dhikr_after_prayer" IN (0, 1))',
+        ),
+        defaultValue: const Constant(false),
+      );
+  static const VerificationMeta _notifyDuaForParentsMeta =
+      const VerificationMeta('notifyDuaForParents');
+  @override
+  late final GeneratedColumn<bool> notifyDuaForParents = GeneratedColumn<bool>(
+    'notify_dua_for_parents',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_dua_for_parents" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifyFridaySalawatMeta =
+      const VerificationMeta('notifyFridaySalawat');
+  @override
+  late final GeneratedColumn<bool> notifyFridaySalawat = GeneratedColumn<bool>(
+    'notify_friday_salawat',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_friday_salawat" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifyFridayDuaHourMeta =
+      const VerificationMeta('notifyFridayDuaHour');
+  @override
+  late final GeneratedColumn<bool> notifyFridayDuaHour = GeneratedColumn<bool>(
+    'notify_friday_dua_hour',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_friday_dua_hour" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _notifyDidYouKnowMeta = const VerificationMeta(
+    'notifyDidYouKnow',
+  );
+  @override
+  late final GeneratedColumn<bool> notifyDidYouKnow = GeneratedColumn<bool>(
+    'notify_did_you_know',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notify_did_you_know" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _bedtimeHourMeta = const VerificationMeta(
+    'bedtimeHour',
+  );
+  @override
+  late final GeneratedColumn<int> bedtimeHour = GeneratedColumn<int>(
+    'bedtime_hour',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(22),
+  );
+  static const VerificationMeta _bedtimeMinuteMeta = const VerificationMeta(
+    'bedtimeMinute',
+  );
+  @override
+  late final GeneratedColumn<int> bedtimeMinute = GeneratedColumn<int>(
+    'bedtime_minute',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _prayerCalculationMethodMeta =
+      const VerificationMeta('prayerCalculationMethod');
+  @override
+  late final GeneratedColumn<String> prayerCalculationMethod =
+      GeneratedColumn<String>(
+        'prayer_calculation_method',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: const Constant('auto'),
+      );
+  static const VerificationMeta _madhabMeta = const VerificationMeta('madhab');
+  @override
+  late final GeneratedColumn<String> madhab = GeneratedColumn<String>(
+    'madhab',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('shafi'),
+  );
+  static const VerificationMeta _localeCodeMeta = const VerificationMeta(
+    'localeCode',
+  );
+  @override
+  late final GeneratedColumn<String> localeCode = GeneratedColumn<String>(
+    'locale_code',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('en'),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -203,6 +477,26 @@ class $UserPreferencesTable extends UserPreferences
     onboardingCompleted,
     streakCurrent,
     streakLastDate,
+    notifyPrayerTimes,
+    notifyPrayerAdvanceMinutes,
+    notifyFridayKahf,
+    notifyFastingDays,
+    notifyMorningAdhkar,
+    notifyEveningAdhkar,
+    notifyBedtimeDua,
+    notifySurahMulk,
+    notifyDuhaReminder,
+    notifyTahajjud,
+    notifyDhikrAfterPrayer,
+    notifyDuaForParents,
+    notifyFridaySalawat,
+    notifyFridayDuaHour,
+    notifyDidYouKnow,
+    bedtimeHour,
+    bedtimeMinute,
+    prayerCalculationMethod,
+    madhab,
+    localeCode,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -339,6 +633,180 @@ class $UserPreferencesTable extends UserPreferences
         ),
       );
     }
+    if (data.containsKey('notify_prayer_times')) {
+      context.handle(
+        _notifyPrayerTimesMeta,
+        notifyPrayerTimes.isAcceptableOrUnknown(
+          data['notify_prayer_times']!,
+          _notifyPrayerTimesMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_prayer_advance_minutes')) {
+      context.handle(
+        _notifyPrayerAdvanceMinutesMeta,
+        notifyPrayerAdvanceMinutes.isAcceptableOrUnknown(
+          data['notify_prayer_advance_minutes']!,
+          _notifyPrayerAdvanceMinutesMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_friday_kahf')) {
+      context.handle(
+        _notifyFridayKahfMeta,
+        notifyFridayKahf.isAcceptableOrUnknown(
+          data['notify_friday_kahf']!,
+          _notifyFridayKahfMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_fasting_days')) {
+      context.handle(
+        _notifyFastingDaysMeta,
+        notifyFastingDays.isAcceptableOrUnknown(
+          data['notify_fasting_days']!,
+          _notifyFastingDaysMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_morning_adhkar')) {
+      context.handle(
+        _notifyMorningAdhkarMeta,
+        notifyMorningAdhkar.isAcceptableOrUnknown(
+          data['notify_morning_adhkar']!,
+          _notifyMorningAdhkarMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_evening_adhkar')) {
+      context.handle(
+        _notifyEveningAdhkarMeta,
+        notifyEveningAdhkar.isAcceptableOrUnknown(
+          data['notify_evening_adhkar']!,
+          _notifyEveningAdhkarMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_bedtime_dua')) {
+      context.handle(
+        _notifyBedtimeDuaMeta,
+        notifyBedtimeDua.isAcceptableOrUnknown(
+          data['notify_bedtime_dua']!,
+          _notifyBedtimeDuaMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_surah_mulk')) {
+      context.handle(
+        _notifySurahMulkMeta,
+        notifySurahMulk.isAcceptableOrUnknown(
+          data['notify_surah_mulk']!,
+          _notifySurahMulkMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_duha_reminder')) {
+      context.handle(
+        _notifyDuhaReminderMeta,
+        notifyDuhaReminder.isAcceptableOrUnknown(
+          data['notify_duha_reminder']!,
+          _notifyDuhaReminderMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_tahajjud')) {
+      context.handle(
+        _notifyTahajjudMeta,
+        notifyTahajjud.isAcceptableOrUnknown(
+          data['notify_tahajjud']!,
+          _notifyTahajjudMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_dhikr_after_prayer')) {
+      context.handle(
+        _notifyDhikrAfterPrayerMeta,
+        notifyDhikrAfterPrayer.isAcceptableOrUnknown(
+          data['notify_dhikr_after_prayer']!,
+          _notifyDhikrAfterPrayerMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_dua_for_parents')) {
+      context.handle(
+        _notifyDuaForParentsMeta,
+        notifyDuaForParents.isAcceptableOrUnknown(
+          data['notify_dua_for_parents']!,
+          _notifyDuaForParentsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_friday_salawat')) {
+      context.handle(
+        _notifyFridaySalawatMeta,
+        notifyFridaySalawat.isAcceptableOrUnknown(
+          data['notify_friday_salawat']!,
+          _notifyFridaySalawatMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_friday_dua_hour')) {
+      context.handle(
+        _notifyFridayDuaHourMeta,
+        notifyFridayDuaHour.isAcceptableOrUnknown(
+          data['notify_friday_dua_hour']!,
+          _notifyFridayDuaHourMeta,
+        ),
+      );
+    }
+    if (data.containsKey('notify_did_you_know')) {
+      context.handle(
+        _notifyDidYouKnowMeta,
+        notifyDidYouKnow.isAcceptableOrUnknown(
+          data['notify_did_you_know']!,
+          _notifyDidYouKnowMeta,
+        ),
+      );
+    }
+    if (data.containsKey('bedtime_hour')) {
+      context.handle(
+        _bedtimeHourMeta,
+        bedtimeHour.isAcceptableOrUnknown(
+          data['bedtime_hour']!,
+          _bedtimeHourMeta,
+        ),
+      );
+    }
+    if (data.containsKey('bedtime_minute')) {
+      context.handle(
+        _bedtimeMinuteMeta,
+        bedtimeMinute.isAcceptableOrUnknown(
+          data['bedtime_minute']!,
+          _bedtimeMinuteMeta,
+        ),
+      );
+    }
+    if (data.containsKey('prayer_calculation_method')) {
+      context.handle(
+        _prayerCalculationMethodMeta,
+        prayerCalculationMethod.isAcceptableOrUnknown(
+          data['prayer_calculation_method']!,
+          _prayerCalculationMethodMeta,
+        ),
+      );
+    }
+    if (data.containsKey('madhab')) {
+      context.handle(
+        _madhabMeta,
+        madhab.isAcceptableOrUnknown(data['madhab']!, _madhabMeta),
+      );
+    }
+    if (data.containsKey('locale_code')) {
+      context.handle(
+        _localeCodeMeta,
+        localeCode.isAcceptableOrUnknown(data['locale_code']!, _localeCodeMeta),
+      );
+    }
     return context;
   }
 
@@ -408,6 +876,86 @@ class $UserPreferencesTable extends UserPreferences
         DriftSqlType.string,
         data['${effectivePrefix}streak_last_date'],
       ),
+      notifyPrayerTimes: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_prayer_times'],
+      )!,
+      notifyPrayerAdvanceMinutes: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}notify_prayer_advance_minutes'],
+      )!,
+      notifyFridayKahf: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_friday_kahf'],
+      )!,
+      notifyFastingDays: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_fasting_days'],
+      )!,
+      notifyMorningAdhkar: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_morning_adhkar'],
+      )!,
+      notifyEveningAdhkar: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_evening_adhkar'],
+      )!,
+      notifyBedtimeDua: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_bedtime_dua'],
+      )!,
+      notifySurahMulk: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_surah_mulk'],
+      )!,
+      notifyDuhaReminder: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_duha_reminder'],
+      )!,
+      notifyTahajjud: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_tahajjud'],
+      )!,
+      notifyDhikrAfterPrayer: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_dhikr_after_prayer'],
+      )!,
+      notifyDuaForParents: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_dua_for_parents'],
+      )!,
+      notifyFridaySalawat: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_friday_salawat'],
+      )!,
+      notifyFridayDuaHour: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_friday_dua_hour'],
+      )!,
+      notifyDidYouKnow: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notify_did_you_know'],
+      )!,
+      bedtimeHour: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}bedtime_hour'],
+      )!,
+      bedtimeMinute: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}bedtime_minute'],
+      )!,
+      prayerCalculationMethod: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}prayer_calculation_method'],
+      )!,
+      madhab: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}madhab'],
+      )!,
+      localeCode: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}locale_code'],
+      )!,
     );
   }
 
@@ -433,6 +981,26 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
   final bool onboardingCompleted;
   final int streakCurrent;
   final String? streakLastDate;
+  final bool notifyPrayerTimes;
+  final int notifyPrayerAdvanceMinutes;
+  final bool notifyFridayKahf;
+  final bool notifyFastingDays;
+  final bool notifyMorningAdhkar;
+  final bool notifyEveningAdhkar;
+  final bool notifyBedtimeDua;
+  final bool notifySurahMulk;
+  final bool notifyDuhaReminder;
+  final bool notifyTahajjud;
+  final bool notifyDhikrAfterPrayer;
+  final bool notifyDuaForParents;
+  final bool notifyFridaySalawat;
+  final bool notifyFridayDuaHour;
+  final bool notifyDidYouKnow;
+  final int bedtimeHour;
+  final int bedtimeMinute;
+  final String prayerCalculationMethod;
+  final String madhab;
+  final String localeCode;
   const UserPreference({
     required this.id,
     required this.gateDurationSeconds,
@@ -449,6 +1017,26 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
     required this.onboardingCompleted,
     required this.streakCurrent,
     this.streakLastDate,
+    required this.notifyPrayerTimes,
+    required this.notifyPrayerAdvanceMinutes,
+    required this.notifyFridayKahf,
+    required this.notifyFastingDays,
+    required this.notifyMorningAdhkar,
+    required this.notifyEveningAdhkar,
+    required this.notifyBedtimeDua,
+    required this.notifySurahMulk,
+    required this.notifyDuhaReminder,
+    required this.notifyTahajjud,
+    required this.notifyDhikrAfterPrayer,
+    required this.notifyDuaForParents,
+    required this.notifyFridaySalawat,
+    required this.notifyFridayDuaHour,
+    required this.notifyDidYouKnow,
+    required this.bedtimeHour,
+    required this.bedtimeMinute,
+    required this.prayerCalculationMethod,
+    required this.madhab,
+    required this.localeCode,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -472,6 +1060,30 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
     if (!nullToAbsent || streakLastDate != null) {
       map['streak_last_date'] = Variable<String>(streakLastDate);
     }
+    map['notify_prayer_times'] = Variable<bool>(notifyPrayerTimes);
+    map['notify_prayer_advance_minutes'] = Variable<int>(
+      notifyPrayerAdvanceMinutes,
+    );
+    map['notify_friday_kahf'] = Variable<bool>(notifyFridayKahf);
+    map['notify_fasting_days'] = Variable<bool>(notifyFastingDays);
+    map['notify_morning_adhkar'] = Variable<bool>(notifyMorningAdhkar);
+    map['notify_evening_adhkar'] = Variable<bool>(notifyEveningAdhkar);
+    map['notify_bedtime_dua'] = Variable<bool>(notifyBedtimeDua);
+    map['notify_surah_mulk'] = Variable<bool>(notifySurahMulk);
+    map['notify_duha_reminder'] = Variable<bool>(notifyDuhaReminder);
+    map['notify_tahajjud'] = Variable<bool>(notifyTahajjud);
+    map['notify_dhikr_after_prayer'] = Variable<bool>(notifyDhikrAfterPrayer);
+    map['notify_dua_for_parents'] = Variable<bool>(notifyDuaForParents);
+    map['notify_friday_salawat'] = Variable<bool>(notifyFridaySalawat);
+    map['notify_friday_dua_hour'] = Variable<bool>(notifyFridayDuaHour);
+    map['notify_did_you_know'] = Variable<bool>(notifyDidYouKnow);
+    map['bedtime_hour'] = Variable<int>(bedtimeHour);
+    map['bedtime_minute'] = Variable<int>(bedtimeMinute);
+    map['prayer_calculation_method'] = Variable<String>(
+      prayerCalculationMethod,
+    );
+    map['madhab'] = Variable<String>(madhab);
+    map['locale_code'] = Variable<String>(localeCode);
     return map;
   }
 
@@ -496,6 +1108,26 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
       streakLastDate: streakLastDate == null && nullToAbsent
           ? const Value.absent()
           : Value(streakLastDate),
+      notifyPrayerTimes: Value(notifyPrayerTimes),
+      notifyPrayerAdvanceMinutes: Value(notifyPrayerAdvanceMinutes),
+      notifyFridayKahf: Value(notifyFridayKahf),
+      notifyFastingDays: Value(notifyFastingDays),
+      notifyMorningAdhkar: Value(notifyMorningAdhkar),
+      notifyEveningAdhkar: Value(notifyEveningAdhkar),
+      notifyBedtimeDua: Value(notifyBedtimeDua),
+      notifySurahMulk: Value(notifySurahMulk),
+      notifyDuhaReminder: Value(notifyDuhaReminder),
+      notifyTahajjud: Value(notifyTahajjud),
+      notifyDhikrAfterPrayer: Value(notifyDhikrAfterPrayer),
+      notifyDuaForParents: Value(notifyDuaForParents),
+      notifyFridaySalawat: Value(notifyFridaySalawat),
+      notifyFridayDuaHour: Value(notifyFridayDuaHour),
+      notifyDidYouKnow: Value(notifyDidYouKnow),
+      bedtimeHour: Value(bedtimeHour),
+      bedtimeMinute: Value(bedtimeMinute),
+      prayerCalculationMethod: Value(prayerCalculationMethod),
+      madhab: Value(madhab),
+      localeCode: Value(localeCode),
     );
   }
 
@@ -536,6 +1168,42 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
       ),
       streakCurrent: serializer.fromJson<int>(json['streakCurrent']),
       streakLastDate: serializer.fromJson<String?>(json['streakLastDate']),
+      notifyPrayerTimes: serializer.fromJson<bool>(json['notifyPrayerTimes']),
+      notifyPrayerAdvanceMinutes: serializer.fromJson<int>(
+        json['notifyPrayerAdvanceMinutes'],
+      ),
+      notifyFridayKahf: serializer.fromJson<bool>(json['notifyFridayKahf']),
+      notifyFastingDays: serializer.fromJson<bool>(json['notifyFastingDays']),
+      notifyMorningAdhkar: serializer.fromJson<bool>(
+        json['notifyMorningAdhkar'],
+      ),
+      notifyEveningAdhkar: serializer.fromJson<bool>(
+        json['notifyEveningAdhkar'],
+      ),
+      notifyBedtimeDua: serializer.fromJson<bool>(json['notifyBedtimeDua']),
+      notifySurahMulk: serializer.fromJson<bool>(json['notifySurahMulk']),
+      notifyDuhaReminder: serializer.fromJson<bool>(json['notifyDuhaReminder']),
+      notifyTahajjud: serializer.fromJson<bool>(json['notifyTahajjud']),
+      notifyDhikrAfterPrayer: serializer.fromJson<bool>(
+        json['notifyDhikrAfterPrayer'],
+      ),
+      notifyDuaForParents: serializer.fromJson<bool>(
+        json['notifyDuaForParents'],
+      ),
+      notifyFridaySalawat: serializer.fromJson<bool>(
+        json['notifyFridaySalawat'],
+      ),
+      notifyFridayDuaHour: serializer.fromJson<bool>(
+        json['notifyFridayDuaHour'],
+      ),
+      notifyDidYouKnow: serializer.fromJson<bool>(json['notifyDidYouKnow']),
+      bedtimeHour: serializer.fromJson<int>(json['bedtimeHour']),
+      bedtimeMinute: serializer.fromJson<int>(json['bedtimeMinute']),
+      prayerCalculationMethod: serializer.fromJson<String>(
+        json['prayerCalculationMethod'],
+      ),
+      madhab: serializer.fromJson<String>(json['madhab']),
+      localeCode: serializer.fromJson<String>(json['localeCode']),
     );
   }
   @override
@@ -559,6 +1227,30 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
       'onboardingCompleted': serializer.toJson<bool>(onboardingCompleted),
       'streakCurrent': serializer.toJson<int>(streakCurrent),
       'streakLastDate': serializer.toJson<String?>(streakLastDate),
+      'notifyPrayerTimes': serializer.toJson<bool>(notifyPrayerTimes),
+      'notifyPrayerAdvanceMinutes': serializer.toJson<int>(
+        notifyPrayerAdvanceMinutes,
+      ),
+      'notifyFridayKahf': serializer.toJson<bool>(notifyFridayKahf),
+      'notifyFastingDays': serializer.toJson<bool>(notifyFastingDays),
+      'notifyMorningAdhkar': serializer.toJson<bool>(notifyMorningAdhkar),
+      'notifyEveningAdhkar': serializer.toJson<bool>(notifyEveningAdhkar),
+      'notifyBedtimeDua': serializer.toJson<bool>(notifyBedtimeDua),
+      'notifySurahMulk': serializer.toJson<bool>(notifySurahMulk),
+      'notifyDuhaReminder': serializer.toJson<bool>(notifyDuhaReminder),
+      'notifyTahajjud': serializer.toJson<bool>(notifyTahajjud),
+      'notifyDhikrAfterPrayer': serializer.toJson<bool>(notifyDhikrAfterPrayer),
+      'notifyDuaForParents': serializer.toJson<bool>(notifyDuaForParents),
+      'notifyFridaySalawat': serializer.toJson<bool>(notifyFridaySalawat),
+      'notifyFridayDuaHour': serializer.toJson<bool>(notifyFridayDuaHour),
+      'notifyDidYouKnow': serializer.toJson<bool>(notifyDidYouKnow),
+      'bedtimeHour': serializer.toJson<int>(bedtimeHour),
+      'bedtimeMinute': serializer.toJson<int>(bedtimeMinute),
+      'prayerCalculationMethod': serializer.toJson<String>(
+        prayerCalculationMethod,
+      ),
+      'madhab': serializer.toJson<String>(madhab),
+      'localeCode': serializer.toJson<String>(localeCode),
     };
   }
 
@@ -578,6 +1270,26 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
     bool? onboardingCompleted,
     int? streakCurrent,
     Value<String?> streakLastDate = const Value.absent(),
+    bool? notifyPrayerTimes,
+    int? notifyPrayerAdvanceMinutes,
+    bool? notifyFridayKahf,
+    bool? notifyFastingDays,
+    bool? notifyMorningAdhkar,
+    bool? notifyEveningAdhkar,
+    bool? notifyBedtimeDua,
+    bool? notifySurahMulk,
+    bool? notifyDuhaReminder,
+    bool? notifyTahajjud,
+    bool? notifyDhikrAfterPrayer,
+    bool? notifyDuaForParents,
+    bool? notifyFridaySalawat,
+    bool? notifyFridayDuaHour,
+    bool? notifyDidYouKnow,
+    int? bedtimeHour,
+    int? bedtimeMinute,
+    String? prayerCalculationMethod,
+    String? madhab,
+    String? localeCode,
   }) => UserPreference(
     id: id ?? this.id,
     gateDurationSeconds: gateDurationSeconds ?? this.gateDurationSeconds,
@@ -600,6 +1312,29 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
     streakLastDate: streakLastDate.present
         ? streakLastDate.value
         : this.streakLastDate,
+    notifyPrayerTimes: notifyPrayerTimes ?? this.notifyPrayerTimes,
+    notifyPrayerAdvanceMinutes:
+        notifyPrayerAdvanceMinutes ?? this.notifyPrayerAdvanceMinutes,
+    notifyFridayKahf: notifyFridayKahf ?? this.notifyFridayKahf,
+    notifyFastingDays: notifyFastingDays ?? this.notifyFastingDays,
+    notifyMorningAdhkar: notifyMorningAdhkar ?? this.notifyMorningAdhkar,
+    notifyEveningAdhkar: notifyEveningAdhkar ?? this.notifyEveningAdhkar,
+    notifyBedtimeDua: notifyBedtimeDua ?? this.notifyBedtimeDua,
+    notifySurahMulk: notifySurahMulk ?? this.notifySurahMulk,
+    notifyDuhaReminder: notifyDuhaReminder ?? this.notifyDuhaReminder,
+    notifyTahajjud: notifyTahajjud ?? this.notifyTahajjud,
+    notifyDhikrAfterPrayer:
+        notifyDhikrAfterPrayer ?? this.notifyDhikrAfterPrayer,
+    notifyDuaForParents: notifyDuaForParents ?? this.notifyDuaForParents,
+    notifyFridaySalawat: notifyFridaySalawat ?? this.notifyFridaySalawat,
+    notifyFridayDuaHour: notifyFridayDuaHour ?? this.notifyFridayDuaHour,
+    notifyDidYouKnow: notifyDidYouKnow ?? this.notifyDidYouKnow,
+    bedtimeHour: bedtimeHour ?? this.bedtimeHour,
+    bedtimeMinute: bedtimeMinute ?? this.bedtimeMinute,
+    prayerCalculationMethod:
+        prayerCalculationMethod ?? this.prayerCalculationMethod,
+    madhab: madhab ?? this.madhab,
+    localeCode: localeCode ?? this.localeCode,
   );
   UserPreference copyWithCompanion(UserPreferencesCompanion data) {
     return UserPreference(
@@ -642,6 +1377,64 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
       streakLastDate: data.streakLastDate.present
           ? data.streakLastDate.value
           : this.streakLastDate,
+      notifyPrayerTimes: data.notifyPrayerTimes.present
+          ? data.notifyPrayerTimes.value
+          : this.notifyPrayerTimes,
+      notifyPrayerAdvanceMinutes: data.notifyPrayerAdvanceMinutes.present
+          ? data.notifyPrayerAdvanceMinutes.value
+          : this.notifyPrayerAdvanceMinutes,
+      notifyFridayKahf: data.notifyFridayKahf.present
+          ? data.notifyFridayKahf.value
+          : this.notifyFridayKahf,
+      notifyFastingDays: data.notifyFastingDays.present
+          ? data.notifyFastingDays.value
+          : this.notifyFastingDays,
+      notifyMorningAdhkar: data.notifyMorningAdhkar.present
+          ? data.notifyMorningAdhkar.value
+          : this.notifyMorningAdhkar,
+      notifyEveningAdhkar: data.notifyEveningAdhkar.present
+          ? data.notifyEveningAdhkar.value
+          : this.notifyEveningAdhkar,
+      notifyBedtimeDua: data.notifyBedtimeDua.present
+          ? data.notifyBedtimeDua.value
+          : this.notifyBedtimeDua,
+      notifySurahMulk: data.notifySurahMulk.present
+          ? data.notifySurahMulk.value
+          : this.notifySurahMulk,
+      notifyDuhaReminder: data.notifyDuhaReminder.present
+          ? data.notifyDuhaReminder.value
+          : this.notifyDuhaReminder,
+      notifyTahajjud: data.notifyTahajjud.present
+          ? data.notifyTahajjud.value
+          : this.notifyTahajjud,
+      notifyDhikrAfterPrayer: data.notifyDhikrAfterPrayer.present
+          ? data.notifyDhikrAfterPrayer.value
+          : this.notifyDhikrAfterPrayer,
+      notifyDuaForParents: data.notifyDuaForParents.present
+          ? data.notifyDuaForParents.value
+          : this.notifyDuaForParents,
+      notifyFridaySalawat: data.notifyFridaySalawat.present
+          ? data.notifyFridaySalawat.value
+          : this.notifyFridaySalawat,
+      notifyFridayDuaHour: data.notifyFridayDuaHour.present
+          ? data.notifyFridayDuaHour.value
+          : this.notifyFridayDuaHour,
+      notifyDidYouKnow: data.notifyDidYouKnow.present
+          ? data.notifyDidYouKnow.value
+          : this.notifyDidYouKnow,
+      bedtimeHour: data.bedtimeHour.present
+          ? data.bedtimeHour.value
+          : this.bedtimeHour,
+      bedtimeMinute: data.bedtimeMinute.present
+          ? data.bedtimeMinute.value
+          : this.bedtimeMinute,
+      prayerCalculationMethod: data.prayerCalculationMethod.present
+          ? data.prayerCalculationMethod.value
+          : this.prayerCalculationMethod,
+      madhab: data.madhab.present ? data.madhab.value : this.madhab,
+      localeCode: data.localeCode.present
+          ? data.localeCode.value
+          : this.localeCode,
     );
   }
 
@@ -662,13 +1455,33 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
           ..write('sequentialPositionAyah: $sequentialPositionAyah, ')
           ..write('onboardingCompleted: $onboardingCompleted, ')
           ..write('streakCurrent: $streakCurrent, ')
-          ..write('streakLastDate: $streakLastDate')
+          ..write('streakLastDate: $streakLastDate, ')
+          ..write('notifyPrayerTimes: $notifyPrayerTimes, ')
+          ..write('notifyPrayerAdvanceMinutes: $notifyPrayerAdvanceMinutes, ')
+          ..write('notifyFridayKahf: $notifyFridayKahf, ')
+          ..write('notifyFastingDays: $notifyFastingDays, ')
+          ..write('notifyMorningAdhkar: $notifyMorningAdhkar, ')
+          ..write('notifyEveningAdhkar: $notifyEveningAdhkar, ')
+          ..write('notifyBedtimeDua: $notifyBedtimeDua, ')
+          ..write('notifySurahMulk: $notifySurahMulk, ')
+          ..write('notifyDuhaReminder: $notifyDuhaReminder, ')
+          ..write('notifyTahajjud: $notifyTahajjud, ')
+          ..write('notifyDhikrAfterPrayer: $notifyDhikrAfterPrayer, ')
+          ..write('notifyDuaForParents: $notifyDuaForParents, ')
+          ..write('notifyFridaySalawat: $notifyFridaySalawat, ')
+          ..write('notifyFridayDuaHour: $notifyFridayDuaHour, ')
+          ..write('notifyDidYouKnow: $notifyDidYouKnow, ')
+          ..write('bedtimeHour: $bedtimeHour, ')
+          ..write('bedtimeMinute: $bedtimeMinute, ')
+          ..write('prayerCalculationMethod: $prayerCalculationMethod, ')
+          ..write('madhab: $madhab, ')
+          ..write('localeCode: $localeCode')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     id,
     gateDurationSeconds,
     unlockDurationSeconds,
@@ -684,7 +1497,27 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
     onboardingCompleted,
     streakCurrent,
     streakLastDate,
-  );
+    notifyPrayerTimes,
+    notifyPrayerAdvanceMinutes,
+    notifyFridayKahf,
+    notifyFastingDays,
+    notifyMorningAdhkar,
+    notifyEveningAdhkar,
+    notifyBedtimeDua,
+    notifySurahMulk,
+    notifyDuhaReminder,
+    notifyTahajjud,
+    notifyDhikrAfterPrayer,
+    notifyDuaForParents,
+    notifyFridaySalawat,
+    notifyFridayDuaHour,
+    notifyDidYouKnow,
+    bedtimeHour,
+    bedtimeMinute,
+    prayerCalculationMethod,
+    madhab,
+    localeCode,
+  ]);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -703,7 +1536,27 @@ class UserPreference extends DataClass implements Insertable<UserPreference> {
           other.sequentialPositionAyah == this.sequentialPositionAyah &&
           other.onboardingCompleted == this.onboardingCompleted &&
           other.streakCurrent == this.streakCurrent &&
-          other.streakLastDate == this.streakLastDate);
+          other.streakLastDate == this.streakLastDate &&
+          other.notifyPrayerTimes == this.notifyPrayerTimes &&
+          other.notifyPrayerAdvanceMinutes == this.notifyPrayerAdvanceMinutes &&
+          other.notifyFridayKahf == this.notifyFridayKahf &&
+          other.notifyFastingDays == this.notifyFastingDays &&
+          other.notifyMorningAdhkar == this.notifyMorningAdhkar &&
+          other.notifyEveningAdhkar == this.notifyEveningAdhkar &&
+          other.notifyBedtimeDua == this.notifyBedtimeDua &&
+          other.notifySurahMulk == this.notifySurahMulk &&
+          other.notifyDuhaReminder == this.notifyDuhaReminder &&
+          other.notifyTahajjud == this.notifyTahajjud &&
+          other.notifyDhikrAfterPrayer == this.notifyDhikrAfterPrayer &&
+          other.notifyDuaForParents == this.notifyDuaForParents &&
+          other.notifyFridaySalawat == this.notifyFridaySalawat &&
+          other.notifyFridayDuaHour == this.notifyFridayDuaHour &&
+          other.notifyDidYouKnow == this.notifyDidYouKnow &&
+          other.bedtimeHour == this.bedtimeHour &&
+          other.bedtimeMinute == this.bedtimeMinute &&
+          other.prayerCalculationMethod == this.prayerCalculationMethod &&
+          other.madhab == this.madhab &&
+          other.localeCode == this.localeCode);
 }
 
 class UserPreferencesCompanion extends UpdateCompanion<UserPreference> {
@@ -722,6 +1575,26 @@ class UserPreferencesCompanion extends UpdateCompanion<UserPreference> {
   final Value<bool> onboardingCompleted;
   final Value<int> streakCurrent;
   final Value<String?> streakLastDate;
+  final Value<bool> notifyPrayerTimes;
+  final Value<int> notifyPrayerAdvanceMinutes;
+  final Value<bool> notifyFridayKahf;
+  final Value<bool> notifyFastingDays;
+  final Value<bool> notifyMorningAdhkar;
+  final Value<bool> notifyEveningAdhkar;
+  final Value<bool> notifyBedtimeDua;
+  final Value<bool> notifySurahMulk;
+  final Value<bool> notifyDuhaReminder;
+  final Value<bool> notifyTahajjud;
+  final Value<bool> notifyDhikrAfterPrayer;
+  final Value<bool> notifyDuaForParents;
+  final Value<bool> notifyFridaySalawat;
+  final Value<bool> notifyFridayDuaHour;
+  final Value<bool> notifyDidYouKnow;
+  final Value<int> bedtimeHour;
+  final Value<int> bedtimeMinute;
+  final Value<String> prayerCalculationMethod;
+  final Value<String> madhab;
+  final Value<String> localeCode;
   const UserPreferencesCompanion({
     this.id = const Value.absent(),
     this.gateDurationSeconds = const Value.absent(),
@@ -738,6 +1611,26 @@ class UserPreferencesCompanion extends UpdateCompanion<UserPreference> {
     this.onboardingCompleted = const Value.absent(),
     this.streakCurrent = const Value.absent(),
     this.streakLastDate = const Value.absent(),
+    this.notifyPrayerTimes = const Value.absent(),
+    this.notifyPrayerAdvanceMinutes = const Value.absent(),
+    this.notifyFridayKahf = const Value.absent(),
+    this.notifyFastingDays = const Value.absent(),
+    this.notifyMorningAdhkar = const Value.absent(),
+    this.notifyEveningAdhkar = const Value.absent(),
+    this.notifyBedtimeDua = const Value.absent(),
+    this.notifySurahMulk = const Value.absent(),
+    this.notifyDuhaReminder = const Value.absent(),
+    this.notifyTahajjud = const Value.absent(),
+    this.notifyDhikrAfterPrayer = const Value.absent(),
+    this.notifyDuaForParents = const Value.absent(),
+    this.notifyFridaySalawat = const Value.absent(),
+    this.notifyFridayDuaHour = const Value.absent(),
+    this.notifyDidYouKnow = const Value.absent(),
+    this.bedtimeHour = const Value.absent(),
+    this.bedtimeMinute = const Value.absent(),
+    this.prayerCalculationMethod = const Value.absent(),
+    this.madhab = const Value.absent(),
+    this.localeCode = const Value.absent(),
   });
   UserPreferencesCompanion.insert({
     this.id = const Value.absent(),
@@ -755,6 +1648,26 @@ class UserPreferencesCompanion extends UpdateCompanion<UserPreference> {
     this.onboardingCompleted = const Value.absent(),
     this.streakCurrent = const Value.absent(),
     this.streakLastDate = const Value.absent(),
+    this.notifyPrayerTimes = const Value.absent(),
+    this.notifyPrayerAdvanceMinutes = const Value.absent(),
+    this.notifyFridayKahf = const Value.absent(),
+    this.notifyFastingDays = const Value.absent(),
+    this.notifyMorningAdhkar = const Value.absent(),
+    this.notifyEveningAdhkar = const Value.absent(),
+    this.notifyBedtimeDua = const Value.absent(),
+    this.notifySurahMulk = const Value.absent(),
+    this.notifyDuhaReminder = const Value.absent(),
+    this.notifyTahajjud = const Value.absent(),
+    this.notifyDhikrAfterPrayer = const Value.absent(),
+    this.notifyDuaForParents = const Value.absent(),
+    this.notifyFridaySalawat = const Value.absent(),
+    this.notifyFridayDuaHour = const Value.absent(),
+    this.notifyDidYouKnow = const Value.absent(),
+    this.bedtimeHour = const Value.absent(),
+    this.bedtimeMinute = const Value.absent(),
+    this.prayerCalculationMethod = const Value.absent(),
+    this.madhab = const Value.absent(),
+    this.localeCode = const Value.absent(),
   });
   static Insertable<UserPreference> custom({
     Expression<int>? id,
@@ -772,6 +1685,26 @@ class UserPreferencesCompanion extends UpdateCompanion<UserPreference> {
     Expression<bool>? onboardingCompleted,
     Expression<int>? streakCurrent,
     Expression<String>? streakLastDate,
+    Expression<bool>? notifyPrayerTimes,
+    Expression<int>? notifyPrayerAdvanceMinutes,
+    Expression<bool>? notifyFridayKahf,
+    Expression<bool>? notifyFastingDays,
+    Expression<bool>? notifyMorningAdhkar,
+    Expression<bool>? notifyEveningAdhkar,
+    Expression<bool>? notifyBedtimeDua,
+    Expression<bool>? notifySurahMulk,
+    Expression<bool>? notifyDuhaReminder,
+    Expression<bool>? notifyTahajjud,
+    Expression<bool>? notifyDhikrAfterPrayer,
+    Expression<bool>? notifyDuaForParents,
+    Expression<bool>? notifyFridaySalawat,
+    Expression<bool>? notifyFridayDuaHour,
+    Expression<bool>? notifyDidYouKnow,
+    Expression<int>? bedtimeHour,
+    Expression<int>? bedtimeMinute,
+    Expression<String>? prayerCalculationMethod,
+    Expression<String>? madhab,
+    Expression<String>? localeCode,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -797,6 +1730,35 @@ class UserPreferencesCompanion extends UpdateCompanion<UserPreference> {
         'onboarding_completed': onboardingCompleted,
       if (streakCurrent != null) 'streak_current': streakCurrent,
       if (streakLastDate != null) 'streak_last_date': streakLastDate,
+      if (notifyPrayerTimes != null) 'notify_prayer_times': notifyPrayerTimes,
+      if (notifyPrayerAdvanceMinutes != null)
+        'notify_prayer_advance_minutes': notifyPrayerAdvanceMinutes,
+      if (notifyFridayKahf != null) 'notify_friday_kahf': notifyFridayKahf,
+      if (notifyFastingDays != null) 'notify_fasting_days': notifyFastingDays,
+      if (notifyMorningAdhkar != null)
+        'notify_morning_adhkar': notifyMorningAdhkar,
+      if (notifyEveningAdhkar != null)
+        'notify_evening_adhkar': notifyEveningAdhkar,
+      if (notifyBedtimeDua != null) 'notify_bedtime_dua': notifyBedtimeDua,
+      if (notifySurahMulk != null) 'notify_surah_mulk': notifySurahMulk,
+      if (notifyDuhaReminder != null)
+        'notify_duha_reminder': notifyDuhaReminder,
+      if (notifyTahajjud != null) 'notify_tahajjud': notifyTahajjud,
+      if (notifyDhikrAfterPrayer != null)
+        'notify_dhikr_after_prayer': notifyDhikrAfterPrayer,
+      if (notifyDuaForParents != null)
+        'notify_dua_for_parents': notifyDuaForParents,
+      if (notifyFridaySalawat != null)
+        'notify_friday_salawat': notifyFridaySalawat,
+      if (notifyFridayDuaHour != null)
+        'notify_friday_dua_hour': notifyFridayDuaHour,
+      if (notifyDidYouKnow != null) 'notify_did_you_know': notifyDidYouKnow,
+      if (bedtimeHour != null) 'bedtime_hour': bedtimeHour,
+      if (bedtimeMinute != null) 'bedtime_minute': bedtimeMinute,
+      if (prayerCalculationMethod != null)
+        'prayer_calculation_method': prayerCalculationMethod,
+      if (madhab != null) 'madhab': madhab,
+      if (localeCode != null) 'locale_code': localeCode,
     });
   }
 
@@ -816,6 +1778,26 @@ class UserPreferencesCompanion extends UpdateCompanion<UserPreference> {
     Value<bool>? onboardingCompleted,
     Value<int>? streakCurrent,
     Value<String?>? streakLastDate,
+    Value<bool>? notifyPrayerTimes,
+    Value<int>? notifyPrayerAdvanceMinutes,
+    Value<bool>? notifyFridayKahf,
+    Value<bool>? notifyFastingDays,
+    Value<bool>? notifyMorningAdhkar,
+    Value<bool>? notifyEveningAdhkar,
+    Value<bool>? notifyBedtimeDua,
+    Value<bool>? notifySurahMulk,
+    Value<bool>? notifyDuhaReminder,
+    Value<bool>? notifyTahajjud,
+    Value<bool>? notifyDhikrAfterPrayer,
+    Value<bool>? notifyDuaForParents,
+    Value<bool>? notifyFridaySalawat,
+    Value<bool>? notifyFridayDuaHour,
+    Value<bool>? notifyDidYouKnow,
+    Value<int>? bedtimeHour,
+    Value<int>? bedtimeMinute,
+    Value<String>? prayerCalculationMethod,
+    Value<String>? madhab,
+    Value<String>? localeCode,
   }) {
     return UserPreferencesCompanion(
       id: id ?? this.id,
@@ -837,6 +1819,29 @@ class UserPreferencesCompanion extends UpdateCompanion<UserPreference> {
       onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,
       streakCurrent: streakCurrent ?? this.streakCurrent,
       streakLastDate: streakLastDate ?? this.streakLastDate,
+      notifyPrayerTimes: notifyPrayerTimes ?? this.notifyPrayerTimes,
+      notifyPrayerAdvanceMinutes:
+          notifyPrayerAdvanceMinutes ?? this.notifyPrayerAdvanceMinutes,
+      notifyFridayKahf: notifyFridayKahf ?? this.notifyFridayKahf,
+      notifyFastingDays: notifyFastingDays ?? this.notifyFastingDays,
+      notifyMorningAdhkar: notifyMorningAdhkar ?? this.notifyMorningAdhkar,
+      notifyEveningAdhkar: notifyEveningAdhkar ?? this.notifyEveningAdhkar,
+      notifyBedtimeDua: notifyBedtimeDua ?? this.notifyBedtimeDua,
+      notifySurahMulk: notifySurahMulk ?? this.notifySurahMulk,
+      notifyDuhaReminder: notifyDuhaReminder ?? this.notifyDuhaReminder,
+      notifyTahajjud: notifyTahajjud ?? this.notifyTahajjud,
+      notifyDhikrAfterPrayer:
+          notifyDhikrAfterPrayer ?? this.notifyDhikrAfterPrayer,
+      notifyDuaForParents: notifyDuaForParents ?? this.notifyDuaForParents,
+      notifyFridaySalawat: notifyFridaySalawat ?? this.notifyFridaySalawat,
+      notifyFridayDuaHour: notifyFridayDuaHour ?? this.notifyFridayDuaHour,
+      notifyDidYouKnow: notifyDidYouKnow ?? this.notifyDidYouKnow,
+      bedtimeHour: bedtimeHour ?? this.bedtimeHour,
+      bedtimeMinute: bedtimeMinute ?? this.bedtimeMinute,
+      prayerCalculationMethod:
+          prayerCalculationMethod ?? this.prayerCalculationMethod,
+      madhab: madhab ?? this.madhab,
+      localeCode: localeCode ?? this.localeCode,
     );
   }
 
@@ -896,6 +1901,72 @@ class UserPreferencesCompanion extends UpdateCompanion<UserPreference> {
     if (streakLastDate.present) {
       map['streak_last_date'] = Variable<String>(streakLastDate.value);
     }
+    if (notifyPrayerTimes.present) {
+      map['notify_prayer_times'] = Variable<bool>(notifyPrayerTimes.value);
+    }
+    if (notifyPrayerAdvanceMinutes.present) {
+      map['notify_prayer_advance_minutes'] = Variable<int>(
+        notifyPrayerAdvanceMinutes.value,
+      );
+    }
+    if (notifyFridayKahf.present) {
+      map['notify_friday_kahf'] = Variable<bool>(notifyFridayKahf.value);
+    }
+    if (notifyFastingDays.present) {
+      map['notify_fasting_days'] = Variable<bool>(notifyFastingDays.value);
+    }
+    if (notifyMorningAdhkar.present) {
+      map['notify_morning_adhkar'] = Variable<bool>(notifyMorningAdhkar.value);
+    }
+    if (notifyEveningAdhkar.present) {
+      map['notify_evening_adhkar'] = Variable<bool>(notifyEveningAdhkar.value);
+    }
+    if (notifyBedtimeDua.present) {
+      map['notify_bedtime_dua'] = Variable<bool>(notifyBedtimeDua.value);
+    }
+    if (notifySurahMulk.present) {
+      map['notify_surah_mulk'] = Variable<bool>(notifySurahMulk.value);
+    }
+    if (notifyDuhaReminder.present) {
+      map['notify_duha_reminder'] = Variable<bool>(notifyDuhaReminder.value);
+    }
+    if (notifyTahajjud.present) {
+      map['notify_tahajjud'] = Variable<bool>(notifyTahajjud.value);
+    }
+    if (notifyDhikrAfterPrayer.present) {
+      map['notify_dhikr_after_prayer'] = Variable<bool>(
+        notifyDhikrAfterPrayer.value,
+      );
+    }
+    if (notifyDuaForParents.present) {
+      map['notify_dua_for_parents'] = Variable<bool>(notifyDuaForParents.value);
+    }
+    if (notifyFridaySalawat.present) {
+      map['notify_friday_salawat'] = Variable<bool>(notifyFridaySalawat.value);
+    }
+    if (notifyFridayDuaHour.present) {
+      map['notify_friday_dua_hour'] = Variable<bool>(notifyFridayDuaHour.value);
+    }
+    if (notifyDidYouKnow.present) {
+      map['notify_did_you_know'] = Variable<bool>(notifyDidYouKnow.value);
+    }
+    if (bedtimeHour.present) {
+      map['bedtime_hour'] = Variable<int>(bedtimeHour.value);
+    }
+    if (bedtimeMinute.present) {
+      map['bedtime_minute'] = Variable<int>(bedtimeMinute.value);
+    }
+    if (prayerCalculationMethod.present) {
+      map['prayer_calculation_method'] = Variable<String>(
+        prayerCalculationMethod.value,
+      );
+    }
+    if (madhab.present) {
+      map['madhab'] = Variable<String>(madhab.value);
+    }
+    if (localeCode.present) {
+      map['locale_code'] = Variable<String>(localeCode.value);
+    }
     return map;
   }
 
@@ -916,7 +1987,27 @@ class UserPreferencesCompanion extends UpdateCompanion<UserPreference> {
           ..write('sequentialPositionAyah: $sequentialPositionAyah, ')
           ..write('onboardingCompleted: $onboardingCompleted, ')
           ..write('streakCurrent: $streakCurrent, ')
-          ..write('streakLastDate: $streakLastDate')
+          ..write('streakLastDate: $streakLastDate, ')
+          ..write('notifyPrayerTimes: $notifyPrayerTimes, ')
+          ..write('notifyPrayerAdvanceMinutes: $notifyPrayerAdvanceMinutes, ')
+          ..write('notifyFridayKahf: $notifyFridayKahf, ')
+          ..write('notifyFastingDays: $notifyFastingDays, ')
+          ..write('notifyMorningAdhkar: $notifyMorningAdhkar, ')
+          ..write('notifyEveningAdhkar: $notifyEveningAdhkar, ')
+          ..write('notifyBedtimeDua: $notifyBedtimeDua, ')
+          ..write('notifySurahMulk: $notifySurahMulk, ')
+          ..write('notifyDuhaReminder: $notifyDuhaReminder, ')
+          ..write('notifyTahajjud: $notifyTahajjud, ')
+          ..write('notifyDhikrAfterPrayer: $notifyDhikrAfterPrayer, ')
+          ..write('notifyDuaForParents: $notifyDuaForParents, ')
+          ..write('notifyFridaySalawat: $notifyFridaySalawat, ')
+          ..write('notifyFridayDuaHour: $notifyFridayDuaHour, ')
+          ..write('notifyDidYouKnow: $notifyDidYouKnow, ')
+          ..write('bedtimeHour: $bedtimeHour, ')
+          ..write('bedtimeMinute: $bedtimeMinute, ')
+          ..write('prayerCalculationMethod: $prayerCalculationMethod, ')
+          ..write('madhab: $madhab, ')
+          ..write('localeCode: $localeCode')
           ..write(')'))
         .toString();
   }
@@ -3827,6 +4918,1140 @@ class SurahProgressCompanion extends UpdateCompanion<SurahProgressData> {
   }
 }
 
+class $ReadAyahsTable extends ReadAyahs
+    with TableInfo<$ReadAyahsTable, ReadAyah> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ReadAyahsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _globalAyahIdMeta = const VerificationMeta(
+    'globalAyahId',
+  );
+  @override
+  late final GeneratedColumn<int> globalAyahId = GeneratedColumn<int>(
+    'global_ayah_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _surahNumberMeta = const VerificationMeta(
+    'surahNumber',
+  );
+  @override
+  late final GeneratedColumn<int> surahNumber = GeneratedColumn<int>(
+    'surah_number',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _ayahNumberMeta = const VerificationMeta(
+    'ayahNumber',
+  );
+  @override
+  late final GeneratedColumn<int> ayahNumber = GeneratedColumn<int>(
+    'ayah_number',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _firstReadAtMeta = const VerificationMeta(
+    'firstReadAt',
+  );
+  @override
+  late final GeneratedColumn<String> firstReadAt = GeneratedColumn<String>(
+    'first_read_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    globalAyahId,
+    surahNumber,
+    ayahNumber,
+    firstReadAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'read_ayahs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ReadAyah> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('global_ayah_id')) {
+      context.handle(
+        _globalAyahIdMeta,
+        globalAyahId.isAcceptableOrUnknown(
+          data['global_ayah_id']!,
+          _globalAyahIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('surah_number')) {
+      context.handle(
+        _surahNumberMeta,
+        surahNumber.isAcceptableOrUnknown(
+          data['surah_number']!,
+          _surahNumberMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_surahNumberMeta);
+    }
+    if (data.containsKey('ayah_number')) {
+      context.handle(
+        _ayahNumberMeta,
+        ayahNumber.isAcceptableOrUnknown(data['ayah_number']!, _ayahNumberMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_ayahNumberMeta);
+    }
+    if (data.containsKey('first_read_at')) {
+      context.handle(
+        _firstReadAtMeta,
+        firstReadAt.isAcceptableOrUnknown(
+          data['first_read_at']!,
+          _firstReadAtMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_firstReadAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {globalAyahId};
+  @override
+  ReadAyah map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ReadAyah(
+      globalAyahId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}global_ayah_id'],
+      )!,
+      surahNumber: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}surah_number'],
+      )!,
+      ayahNumber: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}ayah_number'],
+      )!,
+      firstReadAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}first_read_at'],
+      )!,
+    );
+  }
+
+  @override
+  $ReadAyahsTable createAlias(String alias) {
+    return $ReadAyahsTable(attachedDatabase, alias);
+  }
+}
+
+class ReadAyah extends DataClass implements Insertable<ReadAyah> {
+  final int globalAyahId;
+  final int surahNumber;
+  final int ayahNumber;
+  final String firstReadAt;
+  const ReadAyah({
+    required this.globalAyahId,
+    required this.surahNumber,
+    required this.ayahNumber,
+    required this.firstReadAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['global_ayah_id'] = Variable<int>(globalAyahId);
+    map['surah_number'] = Variable<int>(surahNumber);
+    map['ayah_number'] = Variable<int>(ayahNumber);
+    map['first_read_at'] = Variable<String>(firstReadAt);
+    return map;
+  }
+
+  ReadAyahsCompanion toCompanion(bool nullToAbsent) {
+    return ReadAyahsCompanion(
+      globalAyahId: Value(globalAyahId),
+      surahNumber: Value(surahNumber),
+      ayahNumber: Value(ayahNumber),
+      firstReadAt: Value(firstReadAt),
+    );
+  }
+
+  factory ReadAyah.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ReadAyah(
+      globalAyahId: serializer.fromJson<int>(json['globalAyahId']),
+      surahNumber: serializer.fromJson<int>(json['surahNumber']),
+      ayahNumber: serializer.fromJson<int>(json['ayahNumber']),
+      firstReadAt: serializer.fromJson<String>(json['firstReadAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'globalAyahId': serializer.toJson<int>(globalAyahId),
+      'surahNumber': serializer.toJson<int>(surahNumber),
+      'ayahNumber': serializer.toJson<int>(ayahNumber),
+      'firstReadAt': serializer.toJson<String>(firstReadAt),
+    };
+  }
+
+  ReadAyah copyWith({
+    int? globalAyahId,
+    int? surahNumber,
+    int? ayahNumber,
+    String? firstReadAt,
+  }) => ReadAyah(
+    globalAyahId: globalAyahId ?? this.globalAyahId,
+    surahNumber: surahNumber ?? this.surahNumber,
+    ayahNumber: ayahNumber ?? this.ayahNumber,
+    firstReadAt: firstReadAt ?? this.firstReadAt,
+  );
+  ReadAyah copyWithCompanion(ReadAyahsCompanion data) {
+    return ReadAyah(
+      globalAyahId: data.globalAyahId.present
+          ? data.globalAyahId.value
+          : this.globalAyahId,
+      surahNumber: data.surahNumber.present
+          ? data.surahNumber.value
+          : this.surahNumber,
+      ayahNumber: data.ayahNumber.present
+          ? data.ayahNumber.value
+          : this.ayahNumber,
+      firstReadAt: data.firstReadAt.present
+          ? data.firstReadAt.value
+          : this.firstReadAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ReadAyah(')
+          ..write('globalAyahId: $globalAyahId, ')
+          ..write('surahNumber: $surahNumber, ')
+          ..write('ayahNumber: $ayahNumber, ')
+          ..write('firstReadAt: $firstReadAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(globalAyahId, surahNumber, ayahNumber, firstReadAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ReadAyah &&
+          other.globalAyahId == this.globalAyahId &&
+          other.surahNumber == this.surahNumber &&
+          other.ayahNumber == this.ayahNumber &&
+          other.firstReadAt == this.firstReadAt);
+}
+
+class ReadAyahsCompanion extends UpdateCompanion<ReadAyah> {
+  final Value<int> globalAyahId;
+  final Value<int> surahNumber;
+  final Value<int> ayahNumber;
+  final Value<String> firstReadAt;
+  const ReadAyahsCompanion({
+    this.globalAyahId = const Value.absent(),
+    this.surahNumber = const Value.absent(),
+    this.ayahNumber = const Value.absent(),
+    this.firstReadAt = const Value.absent(),
+  });
+  ReadAyahsCompanion.insert({
+    this.globalAyahId = const Value.absent(),
+    required int surahNumber,
+    required int ayahNumber,
+    required String firstReadAt,
+  }) : surahNumber = Value(surahNumber),
+       ayahNumber = Value(ayahNumber),
+       firstReadAt = Value(firstReadAt);
+  static Insertable<ReadAyah> custom({
+    Expression<int>? globalAyahId,
+    Expression<int>? surahNumber,
+    Expression<int>? ayahNumber,
+    Expression<String>? firstReadAt,
+  }) {
+    return RawValuesInsertable({
+      if (globalAyahId != null) 'global_ayah_id': globalAyahId,
+      if (surahNumber != null) 'surah_number': surahNumber,
+      if (ayahNumber != null) 'ayah_number': ayahNumber,
+      if (firstReadAt != null) 'first_read_at': firstReadAt,
+    });
+  }
+
+  ReadAyahsCompanion copyWith({
+    Value<int>? globalAyahId,
+    Value<int>? surahNumber,
+    Value<int>? ayahNumber,
+    Value<String>? firstReadAt,
+  }) {
+    return ReadAyahsCompanion(
+      globalAyahId: globalAyahId ?? this.globalAyahId,
+      surahNumber: surahNumber ?? this.surahNumber,
+      ayahNumber: ayahNumber ?? this.ayahNumber,
+      firstReadAt: firstReadAt ?? this.firstReadAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (globalAyahId.present) {
+      map['global_ayah_id'] = Variable<int>(globalAyahId.value);
+    }
+    if (surahNumber.present) {
+      map['surah_number'] = Variable<int>(surahNumber.value);
+    }
+    if (ayahNumber.present) {
+      map['ayah_number'] = Variable<int>(ayahNumber.value);
+    }
+    if (firstReadAt.present) {
+      map['first_read_at'] = Variable<String>(firstReadAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ReadAyahsCompanion(')
+          ..write('globalAyahId: $globalAyahId, ')
+          ..write('surahNumber: $surahNumber, ')
+          ..write('ayahNumber: $ayahNumber, ')
+          ..write('firstReadAt: $firstReadAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ReadingEventsTable extends ReadingEvents
+    with TableInfo<$ReadingEventsTable, ReadingEvent> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ReadingEventsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _contentTypeMeta = const VerificationMeta(
+    'contentType',
+  );
+  @override
+  late final GeneratedColumn<String> contentType = GeneratedColumn<String>(
+    'content_type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _surahNumberMeta = const VerificationMeta(
+    'surahNumber',
+  );
+  @override
+  late final GeneratedColumn<int> surahNumber = GeneratedColumn<int>(
+    'surah_number',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _ayahStartMeta = const VerificationMeta(
+    'ayahStart',
+  );
+  @override
+  late final GeneratedColumn<int> ayahStart = GeneratedColumn<int>(
+    'ayah_start',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _ayahEndMeta = const VerificationMeta(
+    'ayahEnd',
+  );
+  @override
+  late final GeneratedColumn<int> ayahEnd = GeneratedColumn<int>(
+    'ayah_end',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _duaIdMeta = const VerificationMeta('duaId');
+  @override
+  late final GeneratedColumn<int> duaId = GeneratedColumn<int>(
+    'dua_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _readAtMeta = const VerificationMeta('readAt');
+  @override
+  late final GeneratedColumn<String> readAt = GeneratedColumn<String>(
+    'read_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _secondsMeta = const VerificationMeta(
+    'seconds',
+  );
+  @override
+  late final GeneratedColumn<int> seconds = GeneratedColumn<int>(
+    'seconds',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    contentType,
+    surahNumber,
+    ayahStart,
+    ayahEnd,
+    duaId,
+    readAt,
+    seconds,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'reading_events';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ReadingEvent> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('content_type')) {
+      context.handle(
+        _contentTypeMeta,
+        contentType.isAcceptableOrUnknown(
+          data['content_type']!,
+          _contentTypeMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_contentTypeMeta);
+    }
+    if (data.containsKey('surah_number')) {
+      context.handle(
+        _surahNumberMeta,
+        surahNumber.isAcceptableOrUnknown(
+          data['surah_number']!,
+          _surahNumberMeta,
+        ),
+      );
+    }
+    if (data.containsKey('ayah_start')) {
+      context.handle(
+        _ayahStartMeta,
+        ayahStart.isAcceptableOrUnknown(data['ayah_start']!, _ayahStartMeta),
+      );
+    }
+    if (data.containsKey('ayah_end')) {
+      context.handle(
+        _ayahEndMeta,
+        ayahEnd.isAcceptableOrUnknown(data['ayah_end']!, _ayahEndMeta),
+      );
+    }
+    if (data.containsKey('dua_id')) {
+      context.handle(
+        _duaIdMeta,
+        duaId.isAcceptableOrUnknown(data['dua_id']!, _duaIdMeta),
+      );
+    }
+    if (data.containsKey('read_at')) {
+      context.handle(
+        _readAtMeta,
+        readAt.isAcceptableOrUnknown(data['read_at']!, _readAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_readAtMeta);
+    }
+    if (data.containsKey('seconds')) {
+      context.handle(
+        _secondsMeta,
+        seconds.isAcceptableOrUnknown(data['seconds']!, _secondsMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ReadingEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ReadingEvent(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      contentType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}content_type'],
+      )!,
+      surahNumber: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}surah_number'],
+      ),
+      ayahStart: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}ayah_start'],
+      ),
+      ayahEnd: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}ayah_end'],
+      ),
+      duaId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}dua_id'],
+      ),
+      readAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}read_at'],
+      )!,
+      seconds: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}seconds'],
+      )!,
+    );
+  }
+
+  @override
+  $ReadingEventsTable createAlias(String alias) {
+    return $ReadingEventsTable(attachedDatabase, alias);
+  }
+}
+
+class ReadingEvent extends DataClass implements Insertable<ReadingEvent> {
+  final int id;
+  final String contentType;
+  final int? surahNumber;
+  final int? ayahStart;
+  final int? ayahEnd;
+  final int? duaId;
+  final String readAt;
+  final int seconds;
+  const ReadingEvent({
+    required this.id,
+    required this.contentType,
+    this.surahNumber,
+    this.ayahStart,
+    this.ayahEnd,
+    this.duaId,
+    required this.readAt,
+    required this.seconds,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['content_type'] = Variable<String>(contentType);
+    if (!nullToAbsent || surahNumber != null) {
+      map['surah_number'] = Variable<int>(surahNumber);
+    }
+    if (!nullToAbsent || ayahStart != null) {
+      map['ayah_start'] = Variable<int>(ayahStart);
+    }
+    if (!nullToAbsent || ayahEnd != null) {
+      map['ayah_end'] = Variable<int>(ayahEnd);
+    }
+    if (!nullToAbsent || duaId != null) {
+      map['dua_id'] = Variable<int>(duaId);
+    }
+    map['read_at'] = Variable<String>(readAt);
+    map['seconds'] = Variable<int>(seconds);
+    return map;
+  }
+
+  ReadingEventsCompanion toCompanion(bool nullToAbsent) {
+    return ReadingEventsCompanion(
+      id: Value(id),
+      contentType: Value(contentType),
+      surahNumber: surahNumber == null && nullToAbsent
+          ? const Value.absent()
+          : Value(surahNumber),
+      ayahStart: ayahStart == null && nullToAbsent
+          ? const Value.absent()
+          : Value(ayahStart),
+      ayahEnd: ayahEnd == null && nullToAbsent
+          ? const Value.absent()
+          : Value(ayahEnd),
+      duaId: duaId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(duaId),
+      readAt: Value(readAt),
+      seconds: Value(seconds),
+    );
+  }
+
+  factory ReadingEvent.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ReadingEvent(
+      id: serializer.fromJson<int>(json['id']),
+      contentType: serializer.fromJson<String>(json['contentType']),
+      surahNumber: serializer.fromJson<int?>(json['surahNumber']),
+      ayahStart: serializer.fromJson<int?>(json['ayahStart']),
+      ayahEnd: serializer.fromJson<int?>(json['ayahEnd']),
+      duaId: serializer.fromJson<int?>(json['duaId']),
+      readAt: serializer.fromJson<String>(json['readAt']),
+      seconds: serializer.fromJson<int>(json['seconds']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'contentType': serializer.toJson<String>(contentType),
+      'surahNumber': serializer.toJson<int?>(surahNumber),
+      'ayahStart': serializer.toJson<int?>(ayahStart),
+      'ayahEnd': serializer.toJson<int?>(ayahEnd),
+      'duaId': serializer.toJson<int?>(duaId),
+      'readAt': serializer.toJson<String>(readAt),
+      'seconds': serializer.toJson<int>(seconds),
+    };
+  }
+
+  ReadingEvent copyWith({
+    int? id,
+    String? contentType,
+    Value<int?> surahNumber = const Value.absent(),
+    Value<int?> ayahStart = const Value.absent(),
+    Value<int?> ayahEnd = const Value.absent(),
+    Value<int?> duaId = const Value.absent(),
+    String? readAt,
+    int? seconds,
+  }) => ReadingEvent(
+    id: id ?? this.id,
+    contentType: contentType ?? this.contentType,
+    surahNumber: surahNumber.present ? surahNumber.value : this.surahNumber,
+    ayahStart: ayahStart.present ? ayahStart.value : this.ayahStart,
+    ayahEnd: ayahEnd.present ? ayahEnd.value : this.ayahEnd,
+    duaId: duaId.present ? duaId.value : this.duaId,
+    readAt: readAt ?? this.readAt,
+    seconds: seconds ?? this.seconds,
+  );
+  ReadingEvent copyWithCompanion(ReadingEventsCompanion data) {
+    return ReadingEvent(
+      id: data.id.present ? data.id.value : this.id,
+      contentType: data.contentType.present
+          ? data.contentType.value
+          : this.contentType,
+      surahNumber: data.surahNumber.present
+          ? data.surahNumber.value
+          : this.surahNumber,
+      ayahStart: data.ayahStart.present ? data.ayahStart.value : this.ayahStart,
+      ayahEnd: data.ayahEnd.present ? data.ayahEnd.value : this.ayahEnd,
+      duaId: data.duaId.present ? data.duaId.value : this.duaId,
+      readAt: data.readAt.present ? data.readAt.value : this.readAt,
+      seconds: data.seconds.present ? data.seconds.value : this.seconds,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ReadingEvent(')
+          ..write('id: $id, ')
+          ..write('contentType: $contentType, ')
+          ..write('surahNumber: $surahNumber, ')
+          ..write('ayahStart: $ayahStart, ')
+          ..write('ayahEnd: $ayahEnd, ')
+          ..write('duaId: $duaId, ')
+          ..write('readAt: $readAt, ')
+          ..write('seconds: $seconds')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    contentType,
+    surahNumber,
+    ayahStart,
+    ayahEnd,
+    duaId,
+    readAt,
+    seconds,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ReadingEvent &&
+          other.id == this.id &&
+          other.contentType == this.contentType &&
+          other.surahNumber == this.surahNumber &&
+          other.ayahStart == this.ayahStart &&
+          other.ayahEnd == this.ayahEnd &&
+          other.duaId == this.duaId &&
+          other.readAt == this.readAt &&
+          other.seconds == this.seconds);
+}
+
+class ReadingEventsCompanion extends UpdateCompanion<ReadingEvent> {
+  final Value<int> id;
+  final Value<String> contentType;
+  final Value<int?> surahNumber;
+  final Value<int?> ayahStart;
+  final Value<int?> ayahEnd;
+  final Value<int?> duaId;
+  final Value<String> readAt;
+  final Value<int> seconds;
+  const ReadingEventsCompanion({
+    this.id = const Value.absent(),
+    this.contentType = const Value.absent(),
+    this.surahNumber = const Value.absent(),
+    this.ayahStart = const Value.absent(),
+    this.ayahEnd = const Value.absent(),
+    this.duaId = const Value.absent(),
+    this.readAt = const Value.absent(),
+    this.seconds = const Value.absent(),
+  });
+  ReadingEventsCompanion.insert({
+    this.id = const Value.absent(),
+    required String contentType,
+    this.surahNumber = const Value.absent(),
+    this.ayahStart = const Value.absent(),
+    this.ayahEnd = const Value.absent(),
+    this.duaId = const Value.absent(),
+    required String readAt,
+    this.seconds = const Value.absent(),
+  }) : contentType = Value(contentType),
+       readAt = Value(readAt);
+  static Insertable<ReadingEvent> custom({
+    Expression<int>? id,
+    Expression<String>? contentType,
+    Expression<int>? surahNumber,
+    Expression<int>? ayahStart,
+    Expression<int>? ayahEnd,
+    Expression<int>? duaId,
+    Expression<String>? readAt,
+    Expression<int>? seconds,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (contentType != null) 'content_type': contentType,
+      if (surahNumber != null) 'surah_number': surahNumber,
+      if (ayahStart != null) 'ayah_start': ayahStart,
+      if (ayahEnd != null) 'ayah_end': ayahEnd,
+      if (duaId != null) 'dua_id': duaId,
+      if (readAt != null) 'read_at': readAt,
+      if (seconds != null) 'seconds': seconds,
+    });
+  }
+
+  ReadingEventsCompanion copyWith({
+    Value<int>? id,
+    Value<String>? contentType,
+    Value<int?>? surahNumber,
+    Value<int?>? ayahStart,
+    Value<int?>? ayahEnd,
+    Value<int?>? duaId,
+    Value<String>? readAt,
+    Value<int>? seconds,
+  }) {
+    return ReadingEventsCompanion(
+      id: id ?? this.id,
+      contentType: contentType ?? this.contentType,
+      surahNumber: surahNumber ?? this.surahNumber,
+      ayahStart: ayahStart ?? this.ayahStart,
+      ayahEnd: ayahEnd ?? this.ayahEnd,
+      duaId: duaId ?? this.duaId,
+      readAt: readAt ?? this.readAt,
+      seconds: seconds ?? this.seconds,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (contentType.present) {
+      map['content_type'] = Variable<String>(contentType.value);
+    }
+    if (surahNumber.present) {
+      map['surah_number'] = Variable<int>(surahNumber.value);
+    }
+    if (ayahStart.present) {
+      map['ayah_start'] = Variable<int>(ayahStart.value);
+    }
+    if (ayahEnd.present) {
+      map['ayah_end'] = Variable<int>(ayahEnd.value);
+    }
+    if (duaId.present) {
+      map['dua_id'] = Variable<int>(duaId.value);
+    }
+    if (readAt.present) {
+      map['read_at'] = Variable<String>(readAt.value);
+    }
+    if (seconds.present) {
+      map['seconds'] = Variable<int>(seconds.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ReadingEventsCompanion(')
+          ..write('id: $id, ')
+          ..write('contentType: $contentType, ')
+          ..write('surahNumber: $surahNumber, ')
+          ..write('ayahStart: $ayahStart, ')
+          ..write('ayahEnd: $ayahEnd, ')
+          ..write('duaId: $duaId, ')
+          ..write('readAt: $readAt, ')
+          ..write('seconds: $seconds')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $PrayerLogsTable extends PrayerLogs
+    with TableInfo<$PrayerLogsTable, PrayerLog> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PrayerLogsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<String> date = GeneratedColumn<String>(
+    'date',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _prayerMeta = const VerificationMeta('prayer');
+  @override
+  late final GeneratedColumn<String> prayer = GeneratedColumn<String>(
+    'prayer',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _prayedAtMeta = const VerificationMeta(
+    'prayedAt',
+  );
+  @override
+  late final GeneratedColumn<String> prayedAt = GeneratedColumn<String>(
+    'prayed_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, date, prayer, prayedAt];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'prayer_logs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<PrayerLog> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+        _dateMeta,
+        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dateMeta);
+    }
+    if (data.containsKey('prayer')) {
+      context.handle(
+        _prayerMeta,
+        prayer.isAcceptableOrUnknown(data['prayer']!, _prayerMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_prayerMeta);
+    }
+    if (data.containsKey('prayed_at')) {
+      context.handle(
+        _prayedAtMeta,
+        prayedAt.isAcceptableOrUnknown(data['prayed_at']!, _prayedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_prayedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  List<Set<GeneratedColumn>> get uniqueKeys => [
+    {date, prayer},
+  ];
+  @override
+  PrayerLog map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PrayerLog(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      date: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}date'],
+      )!,
+      prayer: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}prayer'],
+      )!,
+      prayedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}prayed_at'],
+      )!,
+    );
+  }
+
+  @override
+  $PrayerLogsTable createAlias(String alias) {
+    return $PrayerLogsTable(attachedDatabase, alias);
+  }
+}
+
+class PrayerLog extends DataClass implements Insertable<PrayerLog> {
+  final int id;
+  final String date;
+  final String prayer;
+  final String prayedAt;
+  const PrayerLog({
+    required this.id,
+    required this.date,
+    required this.prayer,
+    required this.prayedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['date'] = Variable<String>(date);
+    map['prayer'] = Variable<String>(prayer);
+    map['prayed_at'] = Variable<String>(prayedAt);
+    return map;
+  }
+
+  PrayerLogsCompanion toCompanion(bool nullToAbsent) {
+    return PrayerLogsCompanion(
+      id: Value(id),
+      date: Value(date),
+      prayer: Value(prayer),
+      prayedAt: Value(prayedAt),
+    );
+  }
+
+  factory PrayerLog.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return PrayerLog(
+      id: serializer.fromJson<int>(json['id']),
+      date: serializer.fromJson<String>(json['date']),
+      prayer: serializer.fromJson<String>(json['prayer']),
+      prayedAt: serializer.fromJson<String>(json['prayedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'date': serializer.toJson<String>(date),
+      'prayer': serializer.toJson<String>(prayer),
+      'prayedAt': serializer.toJson<String>(prayedAt),
+    };
+  }
+
+  PrayerLog copyWith({
+    int? id,
+    String? date,
+    String? prayer,
+    String? prayedAt,
+  }) => PrayerLog(
+    id: id ?? this.id,
+    date: date ?? this.date,
+    prayer: prayer ?? this.prayer,
+    prayedAt: prayedAt ?? this.prayedAt,
+  );
+  PrayerLog copyWithCompanion(PrayerLogsCompanion data) {
+    return PrayerLog(
+      id: data.id.present ? data.id.value : this.id,
+      date: data.date.present ? data.date.value : this.date,
+      prayer: data.prayer.present ? data.prayer.value : this.prayer,
+      prayedAt: data.prayedAt.present ? data.prayedAt.value : this.prayedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PrayerLog(')
+          ..write('id: $id, ')
+          ..write('date: $date, ')
+          ..write('prayer: $prayer, ')
+          ..write('prayedAt: $prayedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, date, prayer, prayedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is PrayerLog &&
+          other.id == this.id &&
+          other.date == this.date &&
+          other.prayer == this.prayer &&
+          other.prayedAt == this.prayedAt);
+}
+
+class PrayerLogsCompanion extends UpdateCompanion<PrayerLog> {
+  final Value<int> id;
+  final Value<String> date;
+  final Value<String> prayer;
+  final Value<String> prayedAt;
+  const PrayerLogsCompanion({
+    this.id = const Value.absent(),
+    this.date = const Value.absent(),
+    this.prayer = const Value.absent(),
+    this.prayedAt = const Value.absent(),
+  });
+  PrayerLogsCompanion.insert({
+    this.id = const Value.absent(),
+    required String date,
+    required String prayer,
+    required String prayedAt,
+  }) : date = Value(date),
+       prayer = Value(prayer),
+       prayedAt = Value(prayedAt);
+  static Insertable<PrayerLog> custom({
+    Expression<int>? id,
+    Expression<String>? date,
+    Expression<String>? prayer,
+    Expression<String>? prayedAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (date != null) 'date': date,
+      if (prayer != null) 'prayer': prayer,
+      if (prayedAt != null) 'prayed_at': prayedAt,
+    });
+  }
+
+  PrayerLogsCompanion copyWith({
+    Value<int>? id,
+    Value<String>? date,
+    Value<String>? prayer,
+    Value<String>? prayedAt,
+  }) {
+    return PrayerLogsCompanion(
+      id: id ?? this.id,
+      date: date ?? this.date,
+      prayer: prayer ?? this.prayer,
+      prayedAt: prayedAt ?? this.prayedAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (date.present) {
+      map['date'] = Variable<String>(date.value);
+    }
+    if (prayer.present) {
+      map['prayer'] = Variable<String>(prayer.value);
+    }
+    if (prayedAt.present) {
+      map['prayed_at'] = Variable<String>(prayedAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PrayerLogsCompanion(')
+          ..write('id: $id, ')
+          ..write('date: $date, ')
+          ..write('prayer: $prayer, ')
+          ..write('prayedAt: $prayedAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -3840,6 +6065,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     this,
   );
   late final $SurahProgressTable surahProgress = $SurahProgressTable(this);
+  late final $ReadAyahsTable readAyahs = $ReadAyahsTable(this);
+  late final $ReadingEventsTable readingEvents = $ReadingEventsTable(this);
+  late final $PrayerLogsTable prayerLogs = $PrayerLogsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -3851,6 +6079,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     unlockSessions,
     readingProgress,
     surahProgress,
+    readAyahs,
+    readingEvents,
+    prayerLogs,
   ];
 }
 
@@ -3871,6 +6102,26 @@ typedef $$UserPreferencesTableCreateCompanionBuilder =
       Value<bool> onboardingCompleted,
       Value<int> streakCurrent,
       Value<String?> streakLastDate,
+      Value<bool> notifyPrayerTimes,
+      Value<int> notifyPrayerAdvanceMinutes,
+      Value<bool> notifyFridayKahf,
+      Value<bool> notifyFastingDays,
+      Value<bool> notifyMorningAdhkar,
+      Value<bool> notifyEveningAdhkar,
+      Value<bool> notifyBedtimeDua,
+      Value<bool> notifySurahMulk,
+      Value<bool> notifyDuhaReminder,
+      Value<bool> notifyTahajjud,
+      Value<bool> notifyDhikrAfterPrayer,
+      Value<bool> notifyDuaForParents,
+      Value<bool> notifyFridaySalawat,
+      Value<bool> notifyFridayDuaHour,
+      Value<bool> notifyDidYouKnow,
+      Value<int> bedtimeHour,
+      Value<int> bedtimeMinute,
+      Value<String> prayerCalculationMethod,
+      Value<String> madhab,
+      Value<String> localeCode,
     });
 typedef $$UserPreferencesTableUpdateCompanionBuilder =
     UserPreferencesCompanion Function({
@@ -3889,6 +6140,26 @@ typedef $$UserPreferencesTableUpdateCompanionBuilder =
       Value<bool> onboardingCompleted,
       Value<int> streakCurrent,
       Value<String?> streakLastDate,
+      Value<bool> notifyPrayerTimes,
+      Value<int> notifyPrayerAdvanceMinutes,
+      Value<bool> notifyFridayKahf,
+      Value<bool> notifyFastingDays,
+      Value<bool> notifyMorningAdhkar,
+      Value<bool> notifyEveningAdhkar,
+      Value<bool> notifyBedtimeDua,
+      Value<bool> notifySurahMulk,
+      Value<bool> notifyDuhaReminder,
+      Value<bool> notifyTahajjud,
+      Value<bool> notifyDhikrAfterPrayer,
+      Value<bool> notifyDuaForParents,
+      Value<bool> notifyFridaySalawat,
+      Value<bool> notifyFridayDuaHour,
+      Value<bool> notifyDidYouKnow,
+      Value<int> bedtimeHour,
+      Value<int> bedtimeMinute,
+      Value<String> prayerCalculationMethod,
+      Value<String> madhab,
+      Value<String> localeCode,
     });
 
 class $$UserPreferencesTableFilterComposer
@@ -3972,6 +6243,106 @@ class $$UserPreferencesTableFilterComposer
 
   ColumnFilters<String> get streakLastDate => $composableBuilder(
     column: $table.streakLastDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyPrayerTimes => $composableBuilder(
+    column: $table.notifyPrayerTimes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get notifyPrayerAdvanceMinutes => $composableBuilder(
+    column: $table.notifyPrayerAdvanceMinutes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyFridayKahf => $composableBuilder(
+    column: $table.notifyFridayKahf,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyFastingDays => $composableBuilder(
+    column: $table.notifyFastingDays,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyMorningAdhkar => $composableBuilder(
+    column: $table.notifyMorningAdhkar,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyEveningAdhkar => $composableBuilder(
+    column: $table.notifyEveningAdhkar,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyBedtimeDua => $composableBuilder(
+    column: $table.notifyBedtimeDua,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifySurahMulk => $composableBuilder(
+    column: $table.notifySurahMulk,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyDuhaReminder => $composableBuilder(
+    column: $table.notifyDuhaReminder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyTahajjud => $composableBuilder(
+    column: $table.notifyTahajjud,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyDhikrAfterPrayer => $composableBuilder(
+    column: $table.notifyDhikrAfterPrayer,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyDuaForParents => $composableBuilder(
+    column: $table.notifyDuaForParents,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyFridaySalawat => $composableBuilder(
+    column: $table.notifyFridaySalawat,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyFridayDuaHour => $composableBuilder(
+    column: $table.notifyFridayDuaHour,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notifyDidYouKnow => $composableBuilder(
+    column: $table.notifyDidYouKnow,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get bedtimeHour => $composableBuilder(
+    column: $table.bedtimeHour,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get bedtimeMinute => $composableBuilder(
+    column: $table.bedtimeMinute,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get prayerCalculationMethod => $composableBuilder(
+    column: $table.prayerCalculationMethod,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get madhab => $composableBuilder(
+    column: $table.madhab,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get localeCode => $composableBuilder(
+    column: $table.localeCode,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -4059,6 +6430,106 @@ class $$UserPreferencesTableOrderingComposer
     column: $table.streakLastDate,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get notifyPrayerTimes => $composableBuilder(
+    column: $table.notifyPrayerTimes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get notifyPrayerAdvanceMinutes => $composableBuilder(
+    column: $table.notifyPrayerAdvanceMinutes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyFridayKahf => $composableBuilder(
+    column: $table.notifyFridayKahf,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyFastingDays => $composableBuilder(
+    column: $table.notifyFastingDays,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyMorningAdhkar => $composableBuilder(
+    column: $table.notifyMorningAdhkar,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyEveningAdhkar => $composableBuilder(
+    column: $table.notifyEveningAdhkar,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyBedtimeDua => $composableBuilder(
+    column: $table.notifyBedtimeDua,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifySurahMulk => $composableBuilder(
+    column: $table.notifySurahMulk,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyDuhaReminder => $composableBuilder(
+    column: $table.notifyDuhaReminder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyTahajjud => $composableBuilder(
+    column: $table.notifyTahajjud,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyDhikrAfterPrayer => $composableBuilder(
+    column: $table.notifyDhikrAfterPrayer,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyDuaForParents => $composableBuilder(
+    column: $table.notifyDuaForParents,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyFridaySalawat => $composableBuilder(
+    column: $table.notifyFridaySalawat,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyFridayDuaHour => $composableBuilder(
+    column: $table.notifyFridayDuaHour,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notifyDidYouKnow => $composableBuilder(
+    column: $table.notifyDidYouKnow,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get bedtimeHour => $composableBuilder(
+    column: $table.bedtimeHour,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get bedtimeMinute => $composableBuilder(
+    column: $table.bedtimeMinute,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get prayerCalculationMethod => $composableBuilder(
+    column: $table.prayerCalculationMethod,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get madhab => $composableBuilder(
+    column: $table.madhab,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get localeCode => $composableBuilder(
+    column: $table.localeCode,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$UserPreferencesTableAnnotationComposer
@@ -4138,6 +6609,104 @@ class $$UserPreferencesTableAnnotationComposer
     column: $table.streakLastDate,
     builder: (column) => column,
   );
+
+  GeneratedColumn<bool> get notifyPrayerTimes => $composableBuilder(
+    column: $table.notifyPrayerTimes,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get notifyPrayerAdvanceMinutes => $composableBuilder(
+    column: $table.notifyPrayerAdvanceMinutes,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyFridayKahf => $composableBuilder(
+    column: $table.notifyFridayKahf,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyFastingDays => $composableBuilder(
+    column: $table.notifyFastingDays,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyMorningAdhkar => $composableBuilder(
+    column: $table.notifyMorningAdhkar,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyEveningAdhkar => $composableBuilder(
+    column: $table.notifyEveningAdhkar,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyBedtimeDua => $composableBuilder(
+    column: $table.notifyBedtimeDua,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifySurahMulk => $composableBuilder(
+    column: $table.notifySurahMulk,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyDuhaReminder => $composableBuilder(
+    column: $table.notifyDuhaReminder,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyTahajjud => $composableBuilder(
+    column: $table.notifyTahajjud,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyDhikrAfterPrayer => $composableBuilder(
+    column: $table.notifyDhikrAfterPrayer,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyDuaForParents => $composableBuilder(
+    column: $table.notifyDuaForParents,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyFridaySalawat => $composableBuilder(
+    column: $table.notifyFridaySalawat,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyFridayDuaHour => $composableBuilder(
+    column: $table.notifyFridayDuaHour,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get notifyDidYouKnow => $composableBuilder(
+    column: $table.notifyDidYouKnow,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get bedtimeHour => $composableBuilder(
+    column: $table.bedtimeHour,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get bedtimeMinute => $composableBuilder(
+    column: $table.bedtimeMinute,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get prayerCalculationMethod => $composableBuilder(
+    column: $table.prayerCalculationMethod,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get madhab =>
+      $composableBuilder(column: $table.madhab, builder: (column) => column);
+
+  GeneratedColumn<String> get localeCode => $composableBuilder(
+    column: $table.localeCode,
+    builder: (column) => column,
+  );
 }
 
 class $$UserPreferencesTableTableManager
@@ -4192,6 +6761,26 @@ class $$UserPreferencesTableTableManager
                 Value<bool> onboardingCompleted = const Value.absent(),
                 Value<int> streakCurrent = const Value.absent(),
                 Value<String?> streakLastDate = const Value.absent(),
+                Value<bool> notifyPrayerTimes = const Value.absent(),
+                Value<int> notifyPrayerAdvanceMinutes = const Value.absent(),
+                Value<bool> notifyFridayKahf = const Value.absent(),
+                Value<bool> notifyFastingDays = const Value.absent(),
+                Value<bool> notifyMorningAdhkar = const Value.absent(),
+                Value<bool> notifyEveningAdhkar = const Value.absent(),
+                Value<bool> notifyBedtimeDua = const Value.absent(),
+                Value<bool> notifySurahMulk = const Value.absent(),
+                Value<bool> notifyDuhaReminder = const Value.absent(),
+                Value<bool> notifyTahajjud = const Value.absent(),
+                Value<bool> notifyDhikrAfterPrayer = const Value.absent(),
+                Value<bool> notifyDuaForParents = const Value.absent(),
+                Value<bool> notifyFridaySalawat = const Value.absent(),
+                Value<bool> notifyFridayDuaHour = const Value.absent(),
+                Value<bool> notifyDidYouKnow = const Value.absent(),
+                Value<int> bedtimeHour = const Value.absent(),
+                Value<int> bedtimeMinute = const Value.absent(),
+                Value<String> prayerCalculationMethod = const Value.absent(),
+                Value<String> madhab = const Value.absent(),
+                Value<String> localeCode = const Value.absent(),
               }) => UserPreferencesCompanion(
                 id: id,
                 gateDurationSeconds: gateDurationSeconds,
@@ -4208,6 +6797,26 @@ class $$UserPreferencesTableTableManager
                 onboardingCompleted: onboardingCompleted,
                 streakCurrent: streakCurrent,
                 streakLastDate: streakLastDate,
+                notifyPrayerTimes: notifyPrayerTimes,
+                notifyPrayerAdvanceMinutes: notifyPrayerAdvanceMinutes,
+                notifyFridayKahf: notifyFridayKahf,
+                notifyFastingDays: notifyFastingDays,
+                notifyMorningAdhkar: notifyMorningAdhkar,
+                notifyEveningAdhkar: notifyEveningAdhkar,
+                notifyBedtimeDua: notifyBedtimeDua,
+                notifySurahMulk: notifySurahMulk,
+                notifyDuhaReminder: notifyDuhaReminder,
+                notifyTahajjud: notifyTahajjud,
+                notifyDhikrAfterPrayer: notifyDhikrAfterPrayer,
+                notifyDuaForParents: notifyDuaForParents,
+                notifyFridaySalawat: notifyFridaySalawat,
+                notifyFridayDuaHour: notifyFridayDuaHour,
+                notifyDidYouKnow: notifyDidYouKnow,
+                bedtimeHour: bedtimeHour,
+                bedtimeMinute: bedtimeMinute,
+                prayerCalculationMethod: prayerCalculationMethod,
+                madhab: madhab,
+                localeCode: localeCode,
               ),
           createCompanionCallback:
               ({
@@ -4226,6 +6835,26 @@ class $$UserPreferencesTableTableManager
                 Value<bool> onboardingCompleted = const Value.absent(),
                 Value<int> streakCurrent = const Value.absent(),
                 Value<String?> streakLastDate = const Value.absent(),
+                Value<bool> notifyPrayerTimes = const Value.absent(),
+                Value<int> notifyPrayerAdvanceMinutes = const Value.absent(),
+                Value<bool> notifyFridayKahf = const Value.absent(),
+                Value<bool> notifyFastingDays = const Value.absent(),
+                Value<bool> notifyMorningAdhkar = const Value.absent(),
+                Value<bool> notifyEveningAdhkar = const Value.absent(),
+                Value<bool> notifyBedtimeDua = const Value.absent(),
+                Value<bool> notifySurahMulk = const Value.absent(),
+                Value<bool> notifyDuhaReminder = const Value.absent(),
+                Value<bool> notifyTahajjud = const Value.absent(),
+                Value<bool> notifyDhikrAfterPrayer = const Value.absent(),
+                Value<bool> notifyDuaForParents = const Value.absent(),
+                Value<bool> notifyFridaySalawat = const Value.absent(),
+                Value<bool> notifyFridayDuaHour = const Value.absent(),
+                Value<bool> notifyDidYouKnow = const Value.absent(),
+                Value<int> bedtimeHour = const Value.absent(),
+                Value<int> bedtimeMinute = const Value.absent(),
+                Value<String> prayerCalculationMethod = const Value.absent(),
+                Value<String> madhab = const Value.absent(),
+                Value<String> localeCode = const Value.absent(),
               }) => UserPreferencesCompanion.insert(
                 id: id,
                 gateDurationSeconds: gateDurationSeconds,
@@ -4242,6 +6871,26 @@ class $$UserPreferencesTableTableManager
                 onboardingCompleted: onboardingCompleted,
                 streakCurrent: streakCurrent,
                 streakLastDate: streakLastDate,
+                notifyPrayerTimes: notifyPrayerTimes,
+                notifyPrayerAdvanceMinutes: notifyPrayerAdvanceMinutes,
+                notifyFridayKahf: notifyFridayKahf,
+                notifyFastingDays: notifyFastingDays,
+                notifyMorningAdhkar: notifyMorningAdhkar,
+                notifyEveningAdhkar: notifyEveningAdhkar,
+                notifyBedtimeDua: notifyBedtimeDua,
+                notifySurahMulk: notifySurahMulk,
+                notifyDuhaReminder: notifyDuhaReminder,
+                notifyTahajjud: notifyTahajjud,
+                notifyDhikrAfterPrayer: notifyDhikrAfterPrayer,
+                notifyDuaForParents: notifyDuaForParents,
+                notifyFridaySalawat: notifyFridaySalawat,
+                notifyFridayDuaHour: notifyFridayDuaHour,
+                notifyDidYouKnow: notifyDidYouKnow,
+                bedtimeHour: bedtimeHour,
+                bedtimeMinute: bedtimeMinute,
+                prayerCalculationMethod: prayerCalculationMethod,
+                madhab: madhab,
+                localeCode: localeCode,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
@@ -6323,6 +8972,610 @@ typedef $$SurahProgressTableProcessedTableManager =
       SurahProgressData,
       PrefetchHooks Function()
     >;
+typedef $$ReadAyahsTableCreateCompanionBuilder =
+    ReadAyahsCompanion Function({
+      Value<int> globalAyahId,
+      required int surahNumber,
+      required int ayahNumber,
+      required String firstReadAt,
+    });
+typedef $$ReadAyahsTableUpdateCompanionBuilder =
+    ReadAyahsCompanion Function({
+      Value<int> globalAyahId,
+      Value<int> surahNumber,
+      Value<int> ayahNumber,
+      Value<String> firstReadAt,
+    });
+
+class $$ReadAyahsTableFilterComposer
+    extends Composer<_$AppDatabase, $ReadAyahsTable> {
+  $$ReadAyahsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get globalAyahId => $composableBuilder(
+    column: $table.globalAyahId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get surahNumber => $composableBuilder(
+    column: $table.surahNumber,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get ayahNumber => $composableBuilder(
+    column: $table.ayahNumber,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get firstReadAt => $composableBuilder(
+    column: $table.firstReadAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$ReadAyahsTableOrderingComposer
+    extends Composer<_$AppDatabase, $ReadAyahsTable> {
+  $$ReadAyahsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get globalAyahId => $composableBuilder(
+    column: $table.globalAyahId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get surahNumber => $composableBuilder(
+    column: $table.surahNumber,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get ayahNumber => $composableBuilder(
+    column: $table.ayahNumber,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get firstReadAt => $composableBuilder(
+    column: $table.firstReadAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$ReadAyahsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ReadAyahsTable> {
+  $$ReadAyahsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get globalAyahId => $composableBuilder(
+    column: $table.globalAyahId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get surahNumber => $composableBuilder(
+    column: $table.surahNumber,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get ayahNumber => $composableBuilder(
+    column: $table.ayahNumber,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get firstReadAt => $composableBuilder(
+    column: $table.firstReadAt,
+    builder: (column) => column,
+  );
+}
+
+class $$ReadAyahsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ReadAyahsTable,
+          ReadAyah,
+          $$ReadAyahsTableFilterComposer,
+          $$ReadAyahsTableOrderingComposer,
+          $$ReadAyahsTableAnnotationComposer,
+          $$ReadAyahsTableCreateCompanionBuilder,
+          $$ReadAyahsTableUpdateCompanionBuilder,
+          (ReadAyah, BaseReferences<_$AppDatabase, $ReadAyahsTable, ReadAyah>),
+          ReadAyah,
+          PrefetchHooks Function()
+        > {
+  $$ReadAyahsTableTableManager(_$AppDatabase db, $ReadAyahsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ReadAyahsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ReadAyahsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ReadAyahsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> globalAyahId = const Value.absent(),
+                Value<int> surahNumber = const Value.absent(),
+                Value<int> ayahNumber = const Value.absent(),
+                Value<String> firstReadAt = const Value.absent(),
+              }) => ReadAyahsCompanion(
+                globalAyahId: globalAyahId,
+                surahNumber: surahNumber,
+                ayahNumber: ayahNumber,
+                firstReadAt: firstReadAt,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> globalAyahId = const Value.absent(),
+                required int surahNumber,
+                required int ayahNumber,
+                required String firstReadAt,
+              }) => ReadAyahsCompanion.insert(
+                globalAyahId: globalAyahId,
+                surahNumber: surahNumber,
+                ayahNumber: ayahNumber,
+                firstReadAt: firstReadAt,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$ReadAyahsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ReadAyahsTable,
+      ReadAyah,
+      $$ReadAyahsTableFilterComposer,
+      $$ReadAyahsTableOrderingComposer,
+      $$ReadAyahsTableAnnotationComposer,
+      $$ReadAyahsTableCreateCompanionBuilder,
+      $$ReadAyahsTableUpdateCompanionBuilder,
+      (ReadAyah, BaseReferences<_$AppDatabase, $ReadAyahsTable, ReadAyah>),
+      ReadAyah,
+      PrefetchHooks Function()
+    >;
+typedef $$ReadingEventsTableCreateCompanionBuilder =
+    ReadingEventsCompanion Function({
+      Value<int> id,
+      required String contentType,
+      Value<int?> surahNumber,
+      Value<int?> ayahStart,
+      Value<int?> ayahEnd,
+      Value<int?> duaId,
+      required String readAt,
+      Value<int> seconds,
+    });
+typedef $$ReadingEventsTableUpdateCompanionBuilder =
+    ReadingEventsCompanion Function({
+      Value<int> id,
+      Value<String> contentType,
+      Value<int?> surahNumber,
+      Value<int?> ayahStart,
+      Value<int?> ayahEnd,
+      Value<int?> duaId,
+      Value<String> readAt,
+      Value<int> seconds,
+    });
+
+class $$ReadingEventsTableFilterComposer
+    extends Composer<_$AppDatabase, $ReadingEventsTable> {
+  $$ReadingEventsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get contentType => $composableBuilder(
+    column: $table.contentType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get surahNumber => $composableBuilder(
+    column: $table.surahNumber,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get ayahStart => $composableBuilder(
+    column: $table.ayahStart,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get ayahEnd => $composableBuilder(
+    column: $table.ayahEnd,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get duaId => $composableBuilder(
+    column: $table.duaId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get readAt => $composableBuilder(
+    column: $table.readAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get seconds => $composableBuilder(
+    column: $table.seconds,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$ReadingEventsTableOrderingComposer
+    extends Composer<_$AppDatabase, $ReadingEventsTable> {
+  $$ReadingEventsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get contentType => $composableBuilder(
+    column: $table.contentType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get surahNumber => $composableBuilder(
+    column: $table.surahNumber,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get ayahStart => $composableBuilder(
+    column: $table.ayahStart,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get ayahEnd => $composableBuilder(
+    column: $table.ayahEnd,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get duaId => $composableBuilder(
+    column: $table.duaId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get readAt => $composableBuilder(
+    column: $table.readAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get seconds => $composableBuilder(
+    column: $table.seconds,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$ReadingEventsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ReadingEventsTable> {
+  $$ReadingEventsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get contentType => $composableBuilder(
+    column: $table.contentType,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get surahNumber => $composableBuilder(
+    column: $table.surahNumber,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get ayahStart =>
+      $composableBuilder(column: $table.ayahStart, builder: (column) => column);
+
+  GeneratedColumn<int> get ayahEnd =>
+      $composableBuilder(column: $table.ayahEnd, builder: (column) => column);
+
+  GeneratedColumn<int> get duaId =>
+      $composableBuilder(column: $table.duaId, builder: (column) => column);
+
+  GeneratedColumn<String> get readAt =>
+      $composableBuilder(column: $table.readAt, builder: (column) => column);
+
+  GeneratedColumn<int> get seconds =>
+      $composableBuilder(column: $table.seconds, builder: (column) => column);
+}
+
+class $$ReadingEventsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ReadingEventsTable,
+          ReadingEvent,
+          $$ReadingEventsTableFilterComposer,
+          $$ReadingEventsTableOrderingComposer,
+          $$ReadingEventsTableAnnotationComposer,
+          $$ReadingEventsTableCreateCompanionBuilder,
+          $$ReadingEventsTableUpdateCompanionBuilder,
+          (
+            ReadingEvent,
+            BaseReferences<_$AppDatabase, $ReadingEventsTable, ReadingEvent>,
+          ),
+          ReadingEvent,
+          PrefetchHooks Function()
+        > {
+  $$ReadingEventsTableTableManager(_$AppDatabase db, $ReadingEventsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ReadingEventsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ReadingEventsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ReadingEventsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> contentType = const Value.absent(),
+                Value<int?> surahNumber = const Value.absent(),
+                Value<int?> ayahStart = const Value.absent(),
+                Value<int?> ayahEnd = const Value.absent(),
+                Value<int?> duaId = const Value.absent(),
+                Value<String> readAt = const Value.absent(),
+                Value<int> seconds = const Value.absent(),
+              }) => ReadingEventsCompanion(
+                id: id,
+                contentType: contentType,
+                surahNumber: surahNumber,
+                ayahStart: ayahStart,
+                ayahEnd: ayahEnd,
+                duaId: duaId,
+                readAt: readAt,
+                seconds: seconds,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String contentType,
+                Value<int?> surahNumber = const Value.absent(),
+                Value<int?> ayahStart = const Value.absent(),
+                Value<int?> ayahEnd = const Value.absent(),
+                Value<int?> duaId = const Value.absent(),
+                required String readAt,
+                Value<int> seconds = const Value.absent(),
+              }) => ReadingEventsCompanion.insert(
+                id: id,
+                contentType: contentType,
+                surahNumber: surahNumber,
+                ayahStart: ayahStart,
+                ayahEnd: ayahEnd,
+                duaId: duaId,
+                readAt: readAt,
+                seconds: seconds,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$ReadingEventsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ReadingEventsTable,
+      ReadingEvent,
+      $$ReadingEventsTableFilterComposer,
+      $$ReadingEventsTableOrderingComposer,
+      $$ReadingEventsTableAnnotationComposer,
+      $$ReadingEventsTableCreateCompanionBuilder,
+      $$ReadingEventsTableUpdateCompanionBuilder,
+      (
+        ReadingEvent,
+        BaseReferences<_$AppDatabase, $ReadingEventsTable, ReadingEvent>,
+      ),
+      ReadingEvent,
+      PrefetchHooks Function()
+    >;
+typedef $$PrayerLogsTableCreateCompanionBuilder =
+    PrayerLogsCompanion Function({
+      Value<int> id,
+      required String date,
+      required String prayer,
+      required String prayedAt,
+    });
+typedef $$PrayerLogsTableUpdateCompanionBuilder =
+    PrayerLogsCompanion Function({
+      Value<int> id,
+      Value<String> date,
+      Value<String> prayer,
+      Value<String> prayedAt,
+    });
+
+class $$PrayerLogsTableFilterComposer
+    extends Composer<_$AppDatabase, $PrayerLogsTable> {
+  $$PrayerLogsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get prayer => $composableBuilder(
+    column: $table.prayer,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get prayedAt => $composableBuilder(
+    column: $table.prayedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$PrayerLogsTableOrderingComposer
+    extends Composer<_$AppDatabase, $PrayerLogsTable> {
+  $$PrayerLogsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get prayer => $composableBuilder(
+    column: $table.prayer,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get prayedAt => $composableBuilder(
+    column: $table.prayedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$PrayerLogsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $PrayerLogsTable> {
+  $$PrayerLogsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get date =>
+      $composableBuilder(column: $table.date, builder: (column) => column);
+
+  GeneratedColumn<String> get prayer =>
+      $composableBuilder(column: $table.prayer, builder: (column) => column);
+
+  GeneratedColumn<String> get prayedAt =>
+      $composableBuilder(column: $table.prayedAt, builder: (column) => column);
+}
+
+class $$PrayerLogsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $PrayerLogsTable,
+          PrayerLog,
+          $$PrayerLogsTableFilterComposer,
+          $$PrayerLogsTableOrderingComposer,
+          $$PrayerLogsTableAnnotationComposer,
+          $$PrayerLogsTableCreateCompanionBuilder,
+          $$PrayerLogsTableUpdateCompanionBuilder,
+          (
+            PrayerLog,
+            BaseReferences<_$AppDatabase, $PrayerLogsTable, PrayerLog>,
+          ),
+          PrayerLog,
+          PrefetchHooks Function()
+        > {
+  $$PrayerLogsTableTableManager(_$AppDatabase db, $PrayerLogsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$PrayerLogsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$PrayerLogsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$PrayerLogsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> date = const Value.absent(),
+                Value<String> prayer = const Value.absent(),
+                Value<String> prayedAt = const Value.absent(),
+              }) => PrayerLogsCompanion(
+                id: id,
+                date: date,
+                prayer: prayer,
+                prayedAt: prayedAt,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String date,
+                required String prayer,
+                required String prayedAt,
+              }) => PrayerLogsCompanion.insert(
+                id: id,
+                date: date,
+                prayer: prayer,
+                prayedAt: prayedAt,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$PrayerLogsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $PrayerLogsTable,
+      PrayerLog,
+      $$PrayerLogsTableFilterComposer,
+      $$PrayerLogsTableOrderingComposer,
+      $$PrayerLogsTableAnnotationComposer,
+      $$PrayerLogsTableCreateCompanionBuilder,
+      $$PrayerLogsTableUpdateCompanionBuilder,
+      (PrayerLog, BaseReferences<_$AppDatabase, $PrayerLogsTable, PrayerLog>),
+      PrayerLog,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -6339,4 +9592,10 @@ class $AppDatabaseManager {
       $$ReadingProgressTableTableManager(_db, _db.readingProgress);
   $$SurahProgressTableTableManager get surahProgress =>
       $$SurahProgressTableTableManager(_db, _db.surahProgress);
+  $$ReadAyahsTableTableManager get readAyahs =>
+      $$ReadAyahsTableTableManager(_db, _db.readAyahs);
+  $$ReadingEventsTableTableManager get readingEvents =>
+      $$ReadingEventsTableTableManager(_db, _db.readingEvents);
+  $$PrayerLogsTableTableManager get prayerLogs =>
+      $$PrayerLogsTableTableManager(_db, _db.prayerLogs);
 }

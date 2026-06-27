@@ -18,7 +18,7 @@ enum GateContentType {
     );
   }
 
-  bool get isFree => this == quran || this == dua;
+  bool get isFree => this == quran || this == dua || this == islamicTeaching;
   bool get isPremium => !isFree;
 }
 

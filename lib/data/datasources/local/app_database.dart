@@ -1,9 +1,5 @@
-import 'dart:io';
-
 import 'package:drift/drift.dart';
-import 'package:drift/native.dart';
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
+import 'package:drift_flutter/drift_flutter.dart';
 
 import '../../../core/constants/app_constants.dart';
 
@@ -39,6 +35,56 @@ class UserPreferences extends Table {
   IntColumn get streakCurrent =>
       integer().withDefault(const Constant(0))();
   TextColumn get streakLastDate => text().nullable()();
+
+  // Notification preferences
+  BoolColumn get notifyPrayerTimes =>
+      boolean().withDefault(const Constant(true))();
+  IntColumn get notifyPrayerAdvanceMinutes =>
+      integer().withDefault(const Constant(0))();
+  BoolColumn get notifyFridayKahf =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get notifyFastingDays =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get notifyMorningAdhkar =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get notifyEveningAdhkar =>
+      boolean().withDefault(const Constant(true))();
+
+  // Extended notification preferences (v3)
+  BoolColumn get notifyBedtimeDua =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get notifySurahMulk =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get notifyDuhaReminder =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get notifyTahajjud =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get notifyDhikrAfterPrayer =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get notifyDuaForParents =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get notifyFridaySalawat =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get notifyFridayDuaHour =>
+      boolean().withDefault(const Constant(true))();
+  BoolColumn get notifyDidYouKnow =>
+      boolean().withDefault(const Constant(true))();
+  IntColumn get bedtimeHour =>
+      integer().withDefault(const Constant(22))();
+  IntColumn get bedtimeMinute =>
+      integer().withDefault(const Constant(0))();
+
+  // Prayer calculation method (v4) — 'auto' uses location-based detection
+  TextColumn get prayerCalculationMethod =>
+      text().withDefault(const Constant('auto'))();
+
+  // Asr madhab (v5): 'shafi' (earlier Asr) or 'hanafi' (later Asr)
+  TextColumn get madhab =>
+      text().withDefault(const Constant('shafi'))();
+
+  // App UI language (v7): 'en' or 'ar'
+  TextColumn get localeCode =>
+      text().withDefault(const Constant('en'))();
 
   @override
   Set<Column> get primaryKey => {id};
@@ -117,6 +163,46 @@ class SurahProgress extends Table {
   Set<Column> get primaryKey => {surahNumber};
 }
 
+/// Distinct ayahs the user has actually read (v5).
+/// [globalAyahId] is the 1..6236 id from the bundled Quran DB (QuranAyah.id),
+/// so true Quran completion = count(ReadAyahs) / 6236. Insert is idempotent
+/// (ignore conflicts) so re-reading never inflates progress.
+class ReadAyahs extends Table {
+  IntColumn get globalAyahId => integer()();
+  IntColumn get surahNumber => integer()();
+  IntColumn get ayahNumber => integer()();
+  TextColumn get firstReadAt => text()();
+
+  @override
+  Set<Column> get primaryKey => {globalAyahId};
+}
+
+/// Append-only log of reading activity (v5) — powers an accurate ordered
+/// timeline regardless of sequential vs random mode.
+class ReadingEvents extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get contentType => text()(); // 'quran' | 'dua' | ...
+  IntColumn get surahNumber => integer().nullable()();
+  IntColumn get ayahStart => integer().nullable()();
+  IntColumn get ayahEnd => integer().nullable()();
+  IntColumn get duaId => integer().nullable()();
+  TextColumn get readAt => text()();
+  IntColumn get seconds => integer().withDefault(const Constant(0))();
+}
+
+/// Logs which of the day's five obligatory prayers the user marked as prayed (v6).
+class PrayerLogs extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get date => text()(); // local 'YYYY-MM-DD'
+  TextColumn get prayer => text()(); // fajr | dhuhr | asr | maghrib | isha
+  TextColumn get prayedAt => text()();
+
+  @override
+  List<Set<Column>> get uniqueKeys => [
+        {date, prayer}
+      ];
+}
+
 // ── Database ────────────────────────────────────────────────────────────────
 
 @DriftDatabase(tables: [
@@ -126,6 +212,9 @@ class SurahProgress extends Table {
   UnlockSessions,
   ReadingProgress,
   SurahProgress,
+  ReadAyahs,
+  ReadingEvents,
+  PrayerLogs,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
@@ -133,7 +222,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.forTesting(super.e);
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 7;
 
   @override
   MigrationStrategy get migration {
@@ -145,14 +234,55 @@ class AppDatabase extends _$AppDatabase {
           UserPreferencesCompanion.insert(),
         );
       },
+      onUpgrade: (Migrator m, int from, int to) async {
+        if (from < 2) {
+          // Add notification preference columns
+          await m.addColumn(userPreferences, userPreferences.notifyPrayerTimes);
+          await m.addColumn(userPreferences, userPreferences.notifyPrayerAdvanceMinutes);
+          await m.addColumn(userPreferences, userPreferences.notifyFridayKahf);
+          await m.addColumn(userPreferences, userPreferences.notifyFastingDays);
+          await m.addColumn(userPreferences, userPreferences.notifyMorningAdhkar);
+          await m.addColumn(userPreferences, userPreferences.notifyEveningAdhkar);
+        }
+        if (from < 3) {
+          // Add extended notification preference columns
+          await m.addColumn(userPreferences, userPreferences.notifyBedtimeDua);
+          await m.addColumn(userPreferences, userPreferences.notifySurahMulk);
+          await m.addColumn(userPreferences, userPreferences.notifyDuhaReminder);
+          await m.addColumn(userPreferences, userPreferences.notifyTahajjud);
+          await m.addColumn(userPreferences, userPreferences.notifyDhikrAfterPrayer);
+          await m.addColumn(userPreferences, userPreferences.notifyDuaForParents);
+          await m.addColumn(userPreferences, userPreferences.notifyFridaySalawat);
+          await m.addColumn(userPreferences, userPreferences.notifyFridayDuaHour);
+          await m.addColumn(userPreferences, userPreferences.notifyDidYouKnow);
+          await m.addColumn(userPreferences, userPreferences.bedtimeHour);
+          await m.addColumn(userPreferences, userPreferences.bedtimeMinute);
+        }
+        if (from < 4) {
+          await m.addColumn(userPreferences, userPreferences.prayerCalculationMethod);
+        }
+        if (from < 5) {
+          await m.addColumn(userPreferences, userPreferences.madhab);
+          await m.createTable(readAyahs);
+          await m.createTable(readingEvents);
+        }
+        if (from < 6) {
+          await m.createTable(prayerLogs);
+        }
+        if (from < 7) {
+          await m.addColumn(userPreferences, userPreferences.localeCode);
+        }
+      },
     );
   }
 }
 
-LazyDatabase _openConnection() {
-  return LazyDatabase(() async {
-    final dir = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dir.path, AppConstants.appDbName));
-    return NativeDatabase.createInBackground(file);
-  });
+QueryExecutor _openConnection() {
+  return driftDatabase(
+    name: AppConstants.appDbName,
+    web: DriftWebOptions(
+      sqlite3Wasm: Uri.parse('sqlite3.wasm'),
+      driftWorker: Uri.parse('drift_worker.js'),
+    ),
+  );
 }
