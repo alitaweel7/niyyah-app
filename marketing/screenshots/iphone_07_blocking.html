@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="_shared.css">
+<style>
+  .title { font-size:48px; font-weight:700; color:#2f4733; padding:10px 60px 0; }
+  .subt { font-size:36px; color:#6e7468; padding:8px 60px 0; }
+  .content { padding:30px 60px 0; display:flex; flex-direction:column; }
+  .list { padding:10px 44px; }
+  .approw { display:flex; align-items:center; gap:34px; padding:38px 0; border-bottom:2px solid #eef0e8; }
+  .approw:last-child { border-bottom:none; }
+  .apptile { width:104px; height:104px; border-radius:28px; display:flex; align-items:center; justify-content:center; font-size:58px; font-weight:800; color:#fff; flex-shrink:0; }
+  .appname { flex:1; font-size:46px; font-weight:600; color:#2a2e28; }
+  .tg { width:118px; height:66px; border-radius:36px; position:relative; flex-shrink:0; }
+  .tg .knob { position:absolute; top:7px; width:52px; height:52px; border-radius:50%; background:#fff; box-shadow:0 4px 10px rgba(0,0,0,.18); }
+  .tg.on { background:#4f6048; } .tg.on .knob { right:7px; }
+  .tg.off { background:#cdd4c0; } .tg.off .knob { left:7px; }
+  .ig { background:linear-gradient(135deg,#feda75,#d62976 45%,#962fbf 80%); }
+  .tk { background:#0b0b0b; } .x { background:#0b0b0b; }
+  .yt { background:#ff0000; } .sc { background:#fffc00; color:#0b0b0b; } .fb { background:#1877f2; }
+  .foot { margin:46px 60px 0; text-align:center; font-size:34px; color:#9aa08f; }
+</style></head>
+<body class="light">
+  <div class="headline">You choose<br>what to pause</div>
+  <div class="sub">Gate the apps that pull you in — on your terms.</div>
+  <div class="phone"><div class="screen">
+    <div class="island"></div>
+    <div class="statusbar"><span>9:41</span><span>􀙇 􀛨 􀋨</span></div>
+    <div class="title">Blocked Apps</div>
+    <div class="subt">Reading unlocks them for 15 minutes.</div>
+    <div class="content">
+      <div class="list card">
+        <div class="approw"><div class="apptile ig">📷</div><div class="appname">Instagram</div><div class="tg on"><div class="knob"></div></div></div>
+        <div class="approw"><div class="apptile tk">♪</div><div class="appname">TikTok</div><div class="tg on"><div class="knob"></div></div></div>
+        <div class="approw"><div class="apptile x">𝕏</div><div class="appname">X</div><div class="tg on"><div class="knob"></div></div></div>
+        <div class="approw"><div class="apptile yt">▶</div><div class="appname">YouTube</div><div class="tg on"><div class="knob"></div></div></div>
+        <div class="approw"><div class="apptile sc">👻</div><div class="appname">Snapchat</div><div class="tg on"><div class="knob"></div></div></div>
+        <div class="approw"><div class="apptile fb">f</div><div class="appname">Facebook</div><div class="tg off"><div class="knob"></div></div></div>
+      </div>
+      <div class="foot">Powered by Apple Screen Time — private to your device.</div>
+    </div>
+  </div></div>
+</body></html>
