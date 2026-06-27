@@ -1,6 +1,6 @@
 abstract final class AppConstants {
-  static const String appName = 'Aya Unlock';
-  static const String tagline = 'Open with intention';
+  static const String appName = 'Niyyah';
+  static const String tagline = 'Set your niyyah before you scroll';
 
   // Gate timer presets (seconds)
   static const List<int> gateTimerPresets = [60, 180, 300, 600];

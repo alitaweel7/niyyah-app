@@ -6,6 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/di/providers.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../l10n/app_strings.dart';
+import '../../../shared/widgets/manuscript_decorations.dart';
 
 class AppSelectionScreen extends ConsumerStatefulWidget {
   const AppSelectionScreen({super.key});
@@ -14,23 +16,169 @@ class AppSelectionScreen extends ConsumerStatefulWidget {
   ConsumerState<AppSelectionScreen> createState() => _AppSelectionScreenState();
 }
 
-class _AppSelectionScreenState extends ConsumerState<AppSelectionScreen> {
+class _AppSelectionScreenState extends ConsumerState<AppSelectionScreen>
+    with WidgetsBindingObserver {
   final Set<String> _selectedPackages = {};
   bool _loaded = false;
+  bool _permissionGranted = false;
+  int _iosShieldedCount = 0;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _loadExistingApps();
   }
 
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // Re-check permission when user comes back from Settings
+    if (state == AppLifecycleState.resumed && !_permissionGranted) {
+      _recheckPermission();
+    }
+  }
+
+  Future<void> _recheckPermission() async {
+    try {
+      final gateService = ref.read(appGateServiceProvider);
+      final hasPerms = await gateService.hasPermissions();
+      if (hasPerms && mounted) {
+        setState(() => _permissionGranted = true);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.tr('appsel_perm_granted'))),
+        );
+      }
+    } catch (e) {
+      debugPrint('Permission recheck failed: $e');
+    }
+  }
+
   Future<void> _loadExistingApps() async {
+    try {
+      final repo = ref.read(blockedAppRepositoryProvider);
+      final apps = await repo.getActiveBlockedApps();
+
+      // Check if Screen Time permission is already granted
+      bool hasPerms = false;
+      try {
+        final gateService = ref.read(appGateServiceProvider);
+        hasPerms = await gateService.hasPermissions();
+      } catch (e) {
+        debugPrint('Failed to check permissions: $e');
+      }
+
+      if (mounted) {
+        setState(() {
+          _selectedPackages.addAll(apps.map((a) => a.packageName));
+          _permissionGranted = hasPerms;
+          _loaded = true;
+        });
+      }
+    } catch (e) {
+      debugPrint('Failed to load existing apps: $e');
+      if (mounted) {
+        setState(() => _loaded = true);
+      }
+    }
+  }
+
+  /// Ensures Screen Time / Family Controls permission is granted.
+  Future<bool> _ensurePermission() async {
+    if (_permissionGranted) return true;
+
+    try {
+      final gateService = ref.read(appGateServiceProvider);
+      final granted = await gateService.requestPermissions();
+
+      if (granted) {
+        setState(() => _permissionGranted = true);
+        return true;
+      } else {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(context.tr('appsel_perm_needed')),
+              duration: const Duration(seconds: 6),
+            ),
+          );
+        }
+        return false;
+      }
+    } catch (e) {
+      debugPrint('Permission request error: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('${context.tr('appsel_perm_error')}: $e')),
+        );
+      }
+      return false;
+    }
+  }
+
+  /// On iOS, open the native FamilyActivityPicker to select apps to shield.
+  Future<void> _openIOSAppPicker() async {
+    if (!await _ensurePermission()) return;
+
+    try {
+      final gateService = ref.read(appGateServiceProvider);
+      final count = await gateService.showAppPicker();
+
+      if (count > 0) {
+        // Sync the count to the local database so dashboard reflects it
+        await _syncIOSGatedApps(count);
+      }
+
+      setState(() {
+        _iosShieldedCount = count;
+      });
+
+      if (mounted && count > 0) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+                '$count ${count == 1 ? context.tr('appsel_app') : context.tr('appsel_apps')} ${context.tr('appsel_selected_for_gating')}'),
+          ),
+        );
+      }
+    } catch (e) {
+      debugPrint('App picker error: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('${context.tr('appsel_picker_error')}: $e')),
+        );
+      }
+    }
+  }
+
+  /// Sync iOS gated app count to the local database so the dashboard shows it.
+  /// Since FamilyActivityPicker returns opaque tokens (no app names), we store
+  /// a single placeholder entry with the count.
+  Future<void> _syncIOSGatedApps(int count) async {
     final repo = ref.read(blockedAppRepositoryProvider);
-    final apps = await repo.getActiveBlockedApps();
-    setState(() {
-      _selectedPackages.addAll(apps.map((a) => a.packageName));
-      _loaded = true;
-    });
+
+    // Resolve localized label before any async gap (avoids context-after-await).
+    final appWord =
+        count == 1 ? context.tr('appsel_app') : context.tr('appsel_apps');
+    final displayName =
+        '$count $appWord ${context.tr('appsel_gated_via_screen_time')}';
+
+    // Remove any existing iOS placeholder entries
+    final existing = await repo.getAllBlockedApps();
+    for (final app in existing.where((a) => a.platform == 'ios')) {
+      await repo.removeBlockedApp(app.id);
+    }
+
+    // Add a single summary entry showing the total count
+    await repo.addBlockedApp(
+      packageName: 'ios_screen_time_gated',
+      displayName: displayName,
+    );
   }
 
   Map<String, String> get _availableApps {
@@ -50,19 +198,9 @@ class _AppSelectionScreenState extends ConsumerState<AppSelectionScreen> {
       }
       setState(() => _selectedPackages.remove(packageName));
     } else {
-      // Check free tier limit
-      final activeCount = await repo.getActiveCount();
-      if (activeCount >= AppConstants.freeMaxBlockedApps) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(
-                  'Free tier allows up to 3 apps. Upgrade to Pro for unlimited.'),
-            ),
-          );
-        }
-        return;
-      }
+      // Request Screen Time permission before adding the first gated app
+      if (!await _ensurePermission()) return;
+
       // Add
       await repo.addBlockedApp(
         packageName: packageName,
@@ -78,44 +216,137 @@ class _AppSelectionScreenState extends ConsumerState<AppSelectionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select Apps to Gate'),
+        title: Text(context.tr('appsel_title')),
       ),
-      body: !_loaded
+      body: Stack(
+        children: [
+          const ParchmentBackground(),
+          !_loaded
           ? const Center(child: CircularProgressIndicator())
           : ListView(
               padding: const EdgeInsets.all(20),
               children: [
                 Text(
-                  'Choose which apps you\'d like to gate behind a reading moment.',
+                  context.tr('appsel_intro'),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: isDark
                             ? AppColors.onSurfaceVariantDark
                             : AppColors.onSurfaceVariantLight,
-                      ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Free: up to ${AppConstants.freeMaxBlockedApps} apps · Pro: unlimited',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isDark
-                            ? AppColors.onSurfaceVariantDark
-                            : AppColors.onSurfaceVariantLight,
+                        height: 1.5,
                       ),
                 ),
                 const SizedBox(height: 20),
-                ..._availableApps.entries.map((entry) {
-                  final isSelected =
-                      _selectedPackages.contains(entry.key);
-                  return _AppTile(
-                    packageName: entry.key,
-                    displayName: entry.value,
-                    isSelected: isSelected,
+                // iOS: show button to open native FamilyActivityPicker
+                if (Platform.isIOS) ...[
+                  _IOSPickerCard(
                     isDark: isDark,
-                    onTap: () => _toggleApp(entry.key, entry.value),
-                  );
-                }),
+                    shieldedCount: _iosShieldedCount,
+                    onTap: _openIOSAppPicker,
+                  ),
+                  const SizedBox(height: 20),
+                  const Center(child: ManuscriptDivider(height: 18)),
+                  const SizedBox(height: 12),
+                  Text(
+                    context.tr('appsel_ios_hint'),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: isDark
+                              ? AppColors.onSurfaceVariantDark
+                              : AppColors.onSurfaceVariantLight,
+                          height: 1.5,
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+                // Android: show hardcoded list with toggles
+                if (!Platform.isIOS) ...[
+                  const SizedBox(height: 8),
+                  const Center(child: ManuscriptDivider(height: 18)),
+                  const SizedBox(height: 16),
+                  ..._availableApps.entries.map((entry) {
+                    final isSelected =
+                        _selectedPackages.contains(entry.key);
+                    return _AppTile(
+                      packageName: entry.key,
+                      displayName: entry.value,
+                      isSelected: isSelected,
+                      isDark: isDark,
+                      onTap: () => _toggleApp(entry.key, entry.value),
+                    );
+                  }),
+                ],
               ],
             ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Card button that opens the iOS FamilyActivityPicker.
+class _IOSPickerCard extends StatelessWidget {
+  const _IOSPickerCard({
+    required this.isDark,
+    required this.shieldedCount,
+    required this.onTap,
+  });
+
+  final bool isDark;
+  final int shieldedCount;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final primary = Theme.of(context).colorScheme.primary;
+    final mutedColor = isDark
+        ? AppColors.onSurfaceVariantDark
+        : AppColors.onSurfaceVariantLight;
+    return Card(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(18),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: primary.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Icon(Icons.apps_rounded, color: primary),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      context.tr('appsel_card_title'),
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      shieldedCount > 0
+                          ? '$shieldedCount ${shieldedCount == 1 ? context.tr('appsel_app') : context.tr('appsel_apps')} ${context.tr('appsel_selected')}'
+                          : context.tr('appsel_card_subtitle'),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: mutedColor,
+                            height: 1.4,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Icon(Icons.chevron_right_rounded, color: mutedColor),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -156,26 +387,52 @@ class _AppTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primary = Theme.of(context).colorScheme.primary;
+    final mutedColor = isDark
+        ? AppColors.onSurfaceVariantDark
+        : AppColors.onSurfaceVariantLight;
     return Card(
-      margin: const EdgeInsets.only(bottom: 8),
-      child: ListTile(
-        leading: Icon(
-          _iconForApp(displayName),
-          color: isSelected
-              ? Theme.of(context).colorScheme.primary
-              : (isDark
-                  ? AppColors.onSurfaceVariantDark
-                  : AppColors.onSurfaceVariantLight),
-        ),
-        title: Text(displayName),
-        trailing: isSelected
-            ? Icon(Icons.check_circle,
-                color: Theme.of(context).colorScheme.primary)
-            : Icon(Icons.circle_outlined,
-                color: isDark
-                    ? AppColors.onSurfaceVariantDark
-                    : AppColors.onSurfaceVariantLight),
+      margin: const EdgeInsetsDirectional.only(bottom: 10),
+      child: InkWell(
         onTap: onTap,
+        borderRadius: BorderRadius.circular(18),
+        child: Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(16, 14, 16, 14),
+          child: Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? primary.withValues(alpha: 0.12)
+                      : Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  _iconForApp(displayName),
+                  size: 20,
+                  color: isSelected ? primary : mutedColor,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  displayName,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontWeight:
+                            isSelected ? FontWeight.w600 : FontWeight.w400,
+                      ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Icon(
+                isSelected ? Icons.check_circle : Icons.circle_outlined,
+                color: isSelected ? primary : mutedColor,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
