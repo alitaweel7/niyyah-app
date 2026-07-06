@@ -1,5 +1,10 @@
 # CLAUDE.md — Niyyah (project `aya_unlock`)
 
+> **REQUIRED READING: [`FABLE.md`](FABLE.md).** This file holds the project FACTS; FABLE.md
+> holds the working METHOD (how to analyze, architect, review, verify, and ship here) and the
+> gating-path invariants that must never regress. Read it before any substantive work — it
+> applies to every model working in this repo.
+
 Niyyah is a live iOS app: a privacy-first, fully-offline Quran-gated blocker for social apps.
 Opening a gated app shows a Screen Time shield; the user reads Quran/Duas in Niyyah for a timed
 "gate" (default 5 min), which grants a temporary unlock window (default 10 min), then the shield
