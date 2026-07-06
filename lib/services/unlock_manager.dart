@@ -7,10 +7,13 @@ import '../data/repositories/gate_session_repository.dart';
 import '../data/repositories/preferences_repository.dart';
 import 'platform/app_gate_service.dart';
 
-/// Coordinates the gate → unlock → re-lock lifecycle.
+/// Starts platform gating on launch and (on Android, eventually) routes
+/// gated-app detections to the gate screen.
 ///
-/// Listens to [AppGateService.gatedAppDetected] and triggers gate navigation.
-/// After a gate is completed, grants temporary unlocks and schedules re-locking.
+/// NOTE: unlock granting and re-locking are deliberately NOT handled here. On
+/// iOS the gate screen calls [AppGateService.grantTemporaryUnlock] directly and
+/// re-locking is owned entirely by the native layer — it must never depend on
+/// the Flutter engine being alive.
 class UnlockManager {
   UnlockManager({
     required this.gateService,
@@ -30,7 +33,6 @@ class UnlockManager {
   final void Function(int blockedAppId, String appName) onGateTriggered;
 
   StreamSubscription<String>? _subscription;
-  final Map<String, Timer> _unlockTimers = {};
 
   /// Start listening for gated app launches.
   Future<void> initialize() async {
@@ -73,44 +75,8 @@ class UnlockManager {
     onGateTriggered(app.id, app.displayName);
   }
 
-  /// Grant a temporary unlock after gate completion.
-  Future<void> grantUnlock({
-    required int gateSessionId,
-    required int blockedAppId,
-    required String packageName,
-  }) async {
-    final prefs = await preferencesRepo.getPreferences();
-    final duration = Duration(seconds: prefs.unlockDurationSeconds);
-
-    // Record in DB
-    await gateSessionRepo.createUnlockSession(
-      gateSessionId: gateSessionId,
-      blockedAppId: blockedAppId,
-      durationSeconds: prefs.unlockDurationSeconds,
-    );
-
-    // Tell platform to unlock
-    await gateService.grantTemporaryUnlock(packageName, duration);
-
-    // Schedule re-lock
-    _unlockTimers[packageName]?.cancel();
-    _unlockTimers[packageName] = Timer(duration, () {
-      _revokeUnlock(packageName);
-    });
-  }
-
-  Future<void> _revokeUnlock(String packageName) async {
-    await gateService.revokeUnlock(packageName);
-    _unlockTimers.remove(packageName);
-    debugPrint('UnlockManager: re-locked $packageName');
-  }
-
   /// Stop listening and clean up.
   void dispose() {
     _subscription?.cancel();
-    for (final timer in _unlockTimers.values) {
-      timer.cancel();
-    }
-    _unlockTimers.clear();
   }
 }

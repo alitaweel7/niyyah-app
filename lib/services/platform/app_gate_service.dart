@@ -44,11 +44,13 @@ abstract class AppGateService {
   /// Get the name of the last app that was shielded (saved by ShieldConfigurationExtension).
   Future<String?> getLastBlockedAppName();
 
-  /// Sync key preferences to App Groups so shield extensions can display them.
+  /// Sync key preferences to App Groups so shield extensions can display them
+  /// (and native notifications can follow the in-app language).
   Future<void> syncPrefsToAppGroup({
     required int gateDurationSeconds,
     required int unlockDurationSeconds,
     String? preferredContentType,
+    String? localeCode,
   });
 
   /// Get navigation info set by the notification tap (skip_picker, content_type, blocked_app_name).

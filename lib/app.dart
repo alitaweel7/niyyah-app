@@ -165,9 +165,9 @@ class _AyaUnlockAppState extends ConsumerState<AyaUnlockApp>
 
     // Navigate straight into the reading screen (no artificial delay).
     _router!.push(AppRoutes.gate, extra: {
-      if (blockedAppName != null) 'blockedAppName': blockedAppName,
+      'blockedAppName': ?blockedAppName,
       if (skipPicker && contentType != null) 'skipPicker': true,
-      if (contentType != null) 'contentType': contentType,
+      'contentType': ?contentType,
     });
   }
 
@@ -186,6 +186,7 @@ class _AyaUnlockAppState extends ConsumerState<AyaUnlockApp>
         gateDurationSeconds: prefs.gateDurationSeconds,
         unlockDurationSeconds: prefs.unlockDurationSeconds,
         preferredContentType: preferredContent,
+        localeCode: prefs.localeCode as String?,
       );
       // Sync the rotating shield ayahs so the iOS shield can show one.
       gateService.syncShieldAyahs(jsonEncode(_shieldAyahs));

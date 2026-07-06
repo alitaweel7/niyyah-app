@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 
+import '../../core/utils/streak_logic.dart';
 import '../datasources/local/app_database.dart';
 
 /// Tracks which of the five daily obligatory prayers the user has marked as
@@ -18,9 +19,8 @@ class PrayerTrackerRepository {
     'isha',
   ];
 
-  /// Local date key 'YYYY-MM-DD'.
-  static String dateKey(DateTime d) =>
-      '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+  /// Local date key 'YYYY-MM-DD' (canonical implementation: streak_logic.dart).
+  static String dateKey(DateTime d) => formatStreakDate(d);
 
   Future<void> markPrayed(String date, String prayer) async {
     await _db.into(_db.prayerLogs).insert(

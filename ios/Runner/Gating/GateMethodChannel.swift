@@ -84,10 +84,10 @@ class GateMethodChannel: NSObject {
             showFamilyActivityPicker(result: result)
 
         case "startGating":
-            // Re-apply shields from stored tokens (e.g., on app restart)
-            bridge.reapplyShields()
-            // Check if a pending re-shield time has passed while app was in background
-            bridge.checkPendingReshield()
+            // Restore shields to match the stored selection (no-op during a
+            // still-valid unlock) and make sure the daily watchdog is armed.
+            bridge.enforceLockState(reason: "start_gating")
+            bridge.startWatchdog()
             result(nil)
 
         case "stopGating":
@@ -97,23 +97,23 @@ class GateMethodChannel: NSObject {
         case "grantTemporaryUnlock":
             let args = call.arguments as? [String: Any]
             let durationSeconds = args?["durationSeconds"] as? Int ?? 600
-
-            // Remove shields temporarily
-            bridge.removeAllShields()
-
-            // Schedule re-shield after duration
-            bridge.scheduleReshield(after: durationSeconds, name: "unlock_session")
+            bridge.grantTemporaryUnlock(seconds: durationSeconds)
             result(nil)
 
         case "revokeUnlock":
-            // Re-apply shields immediately
-            bridge.reapplyShields()
+            // End the unlock and re-apply shields immediately
+            bridge.endUnlock(reason: "revoked")
             result(nil)
 
         case "isRunning":
-            // Also check for pending re-shields whenever the app checks status
-            bridge.checkPendingReshield()
+            // Opportunistic enforcement whenever the app checks status
+            bridge.enforceLockState(reason: "is_running")
             result(bridge.hasAuthorization)
+
+        case "getUnlockState":
+            // Epoch seconds the current unlock expires at, or nil when locked.
+            // (For a future countdown UI in Dart.)
+            result(bridge.currentUnlockUntil)
 
         case "getLastBlockedAppName":
             // Get the name of the last app that was shielded
@@ -206,6 +206,9 @@ class GateMethodChannel: NSObject {
                 if let contentType = args?["preferredContentType"] as? String {
                     shared.set(contentType, forKey: "preferred_content_type")
                 }
+                if let localeCode = args?["localeCode"] as? String {
+                    shared.set(localeCode, forKey: "locale_code")
+                }
                 shared.synchronize()
                 gateLog("GateMethodChannel: synced prefs to App Group")
             }
@@ -238,7 +241,11 @@ class GateMethodChannel: NSObject {
             let bridge = FamilyControlsBridge.shared
             bridge.applySelectionShields(selection: selection)
             rootVC.dismiss(animated: true) {
-                result(selection.applicationTokens.count + selection.categoryTokens.count)
+                // Count every shielded dimension — a web-domains-only selection
+                // must not read as "nothing selected" to the Dart side.
+                result(selection.applicationTokens.count
+                    + selection.categoryTokens.count
+                    + selection.webDomainTokens.count)
             }
         } onCancel: {
             rootVC.dismiss(animated: true) {
