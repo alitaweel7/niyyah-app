@@ -5,9 +5,12 @@ description: Generate or extend Niyyah's bilingual (EN/AR) marketing assets — 
 
 # Niyyah marketing assets
 
-Niyyah (نِيّة) is a live iOS app: a Qur'an-gated focus app ("pause before you scroll" — read an
-ayah to unlock distracting apps for 15 minutes; plus daily duas, a weekly/monthly Qur'an completion
-plan, prayer tracking, Qur'an progress, and a qibla compass). All assets are **bilingual EN + AR**.
+Niyyah (نِيّة) is a live iOS app: a Qur'an-gated focus app ("pause before you scroll" — read
+Qur'an for a few minutes to unlock distracting apps for a short window; defaults are a 5-minute
+gate and a 10-minute unlock, both user-configurable; plus daily duas, a weekly/monthly Qur'an
+completion plan, prayer tracking, Qur'an progress, and a qibla compass). All assets are
+**bilingual EN + AR**. App Store: https://apps.apple.com/app/id6761061944 (use this wherever
+copy says `APP_STORE_LINK`).
 
 ## Copy rules (always)
 - English and Arabic are both first-class. Write Arabic natively (warm Modern Standard Arabic), not a literal translation.

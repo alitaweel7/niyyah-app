@@ -43,3 +43,14 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# iOS build artifacts (only root /build/ was covered above)
+/ios/build/
+**/*.xcarchive
+
+# Nested checkout of the separate website repo (github.com/alitaweel7/niyyah).
+# It has its own .git — never `git add site/` here; push website changes from inside site/.
+/site/
+
+# Internal strategy/audit docs — never publish (repo is public)
+/private/

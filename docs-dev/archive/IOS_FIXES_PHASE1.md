@@ -1,5 +1,11 @@
 # Niyyah — Phase 1 critical fixes (build & finish-up guide)
 
+> **HISTORICAL — completed and shipped in v1.1.0 (App Store, July 2026).**
+> All steps below were done: the DeviceActivityMonitorExtension is a registered target and the
+> App-Group token fix is live. Kept for reference only. The "Part B" open question (15-minute
+> DeviceActivitySchedule minimum vs shorter unlocks) was NOT fully resolved in 1.1.0 — the
+> follow-up re-lock hardening design lives in `private/BACKLOG-1.1.1.md`.
+
 This documents the Phase 1 critical fixes made to the codebase and the **two steps that
 require you** (full Xcode + a GUI target add), plus how to verify the core fix on your iPhone.
 
