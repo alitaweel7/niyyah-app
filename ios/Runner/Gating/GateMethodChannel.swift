@@ -113,13 +113,7 @@ class GateMethodChannel: NSObject {
         case "getUnlockState":
             // Epoch seconds the current unlock expires at, or nil when locked.
             // (For a future countdown UI in Dart.)
-            let until = UserDefaults(suiteName: "group.com.ayaunlock.shared")?
-                .object(forKey: "unlock_until") as? Double
-            if let until = until, Date().timeIntervalSince1970 < until {
-                result(until)
-            } else {
-                result(nil)
-            }
+            result(bridge.currentUnlockUntil)
 
         case "getLastBlockedAppName":
             // Get the name of the last app that was shielded
@@ -212,6 +206,9 @@ class GateMethodChannel: NSObject {
                 if let contentType = args?["preferredContentType"] as? String {
                     shared.set(contentType, forKey: "preferred_content_type")
                 }
+                if let localeCode = args?["localeCode"] as? String {
+                    shared.set(localeCode, forKey: "locale_code")
+                }
                 shared.synchronize()
                 gateLog("GateMethodChannel: synced prefs to App Group")
             }
@@ -244,7 +241,11 @@ class GateMethodChannel: NSObject {
             let bridge = FamilyControlsBridge.shared
             bridge.applySelectionShields(selection: selection)
             rootVC.dismiss(animated: true) {
-                result(selection.applicationTokens.count + selection.categoryTokens.count)
+                // Count every shielded dimension — a web-domains-only selection
+                // must not read as "nothing selected" to the Dart side.
+                result(selection.applicationTokens.count
+                    + selection.categoryTokens.count
+                    + selection.webDomainTokens.count)
             }
         } onCancel: {
             rootVC.dismiss(animated: true) {

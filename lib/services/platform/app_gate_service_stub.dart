@@ -49,6 +49,7 @@ class StubAppGateService implements AppGateService {
     required int gateDurationSeconds,
     required int unlockDurationSeconds,
     String? preferredContentType,
+    String? localeCode,
   }) async {}
 
   @override

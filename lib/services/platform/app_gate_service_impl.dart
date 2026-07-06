@@ -97,12 +97,13 @@ class MethodChannelAppGateService implements AppGateService {
     required int gateDurationSeconds,
     required int unlockDurationSeconds,
     String? preferredContentType,
+    String? localeCode,
   }) async {
     await _methodChannel.invokeMethod('syncPrefsToAppGroup', {
       'gateDurationSeconds': gateDurationSeconds,
       'unlockDurationSeconds': unlockDurationSeconds,
-      if (preferredContentType != null)
-        'preferredContentType': preferredContentType,
+      'preferredContentType': ?preferredContentType,
+      'localeCode': ?localeCode,
     });
   }
 

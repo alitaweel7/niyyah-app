@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 
+import '../../core/utils/streak_logic.dart';
 import '../datasources/local/app_database.dart';
 
 class GateSessionRepository {
@@ -166,7 +167,6 @@ class GateSessionRepository {
 
   // ── Helpers ───────────────────────────────────────────────────────────
 
-  String _dateString(DateTime date) {
-    return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
-  }
+  // Canonical implementation: streak_logic.dart.
+  String _dateString(DateTime date) => formatStreakDate(date);
 }
