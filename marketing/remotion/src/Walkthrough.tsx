@@ -7,8 +7,10 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from 'remotion';
+import {useVid, VidProvider} from './ctx';
 import {Fade, Headline, Phone, Stage} from './Phone';
-import {AMIRI, C, SANS, useAmiri} from './theme';
+import {AMIRI, C, useAmiri} from './theme';
+import {Fmt, Lang, num} from './strings';
 
 const Check: React.FC<{size: number; color?: string; opacity?: number}> = ({
   size,
@@ -31,6 +33,7 @@ const Check: React.FC<{size: number; color?: string; opacity?: number}> = ({
 const Intro: React.FC = () => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
+  const {t} = useVid();
   const s = spring({frame: f, fps, config: {damping: 13}});
   return (
     <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -39,17 +42,16 @@ const Intro: React.FC = () => {
         <div style={{fontSize: 92, fontWeight: 800, color: C.sageDeep, letterSpacing: -1, marginTop: 18}}>
           Niyyah
         </div>
-        <div style={{fontSize: 44, color: C.muted, marginTop: 26}}>
-          Set your niyyah before you scroll.
-        </div>
+        <div style={{fontSize: 44, color: C.muted, marginTop: 26}}>{t.introSub}</div>
       </div>
     </AbsoluteFill>
   );
 };
 
 // ── Gate / reading ─────────────────────────────────────────────────────
-const GateScene: React.FC = () => {
+export const GateScene: React.FC = () => {
   const f = useCurrentFrame();
+  const {t, lang, rtl, font} = useVid();
   const secs = Math.max(0, 133 - Math.floor(f / 30));
   const mm = Math.floor(secs / 60);
   const ss = secs % 60;
@@ -59,8 +61,16 @@ const GateScene: React.FC = () => {
   const circ = 2 * Math.PI * r;
   return (
     <div style={{flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '118px 60px 0'}}>
-      <div style={{fontSize: 26, fontWeight: 600, letterSpacing: 3, textTransform: 'uppercase', color: C.tag}}>
-        Set your niyyah
+      <div
+        style={{
+          fontSize: 26,
+          fontWeight: 600,
+          letterSpacing: rtl ? 0 : 3,
+          textTransform: rtl ? 'none' : 'uppercase',
+          color: C.tag,
+        }}
+      >
+        {t.gate.tag}
       </div>
       <div
         style={{
@@ -76,11 +86,13 @@ const GateScene: React.FC = () => {
       >
         إِنَّ مَعَ الْعُسْرِ يُسْرًا
       </div>
-      <div style={{opacity: ay, marginTop: 44, fontSize: 42, color: '#5b6157', textAlign: 'center', maxWidth: 680}}>
-        “Indeed, with hardship comes ease.”
-      </div>
+      {t.gate.trans ? (
+        <div style={{opacity: ay, marginTop: 44, fontSize: 42, color: '#5b6157', textAlign: 'center', maxWidth: 680}}>
+          {t.gate.trans}
+        </div>
+      ) : null}
       <div style={{opacity: ay, marginTop: 26, fontSize: 30, fontStyle: 'italic', color: C.faint}}>
-        Surah Ash-Sharh · 94:6
+        {t.gate.ref}
       </div>
       <div style={{flex: 1}} />
       <svg width="264" height="264" style={{marginBottom: 34}}>
@@ -97,8 +109,8 @@ const GateScene: React.FC = () => {
           strokeDashoffset={circ * (1 - progress)}
           transform="rotate(-90 132 132)"
         />
-        <text x="132" y="150" textAnchor="middle" fontSize="58" fontWeight="700" fill={C.sageDeep} fontFamily={SANS}>
-          {mm}:{ss.toString().padStart(2, '0')}
+        <text x="132" y="150" textAnchor="middle" fontSize="58" fontWeight="700" fill={C.sageDeep} fontFamily={font}>
+          {num(lang, mm)}:{num(lang, ss.toString().padStart(2, '0'))}
         </text>
       </svg>
       <div
@@ -114,16 +126,17 @@ const GateScene: React.FC = () => {
           fontWeight: 600,
         }}
       >
-        Continue to Instagram
+        {t.gate.cta}
       </div>
     </div>
   );
 };
 
 // ── Unlock ─────────────────────────────────────────────────────────────
-const UnlockScene: React.FC = () => {
+export const UnlockScene: React.FC = () => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
+  const {t} = useVid();
   const s = spring({frame: f - 6, fps, config: {damping: 12}});
   return (
     <div
@@ -150,28 +163,26 @@ const UnlockScene: React.FC = () => {
       >
         <Check size={168} />
       </div>
-      <div style={{marginTop: 70, fontSize: 64, fontWeight: 800, color: C.sageDeep}}>Unlocked</div>
-      <div style={{marginTop: 18, fontSize: 42, color: C.muted, textAlign: 'center'}}>
-        Instagram is open for 15 minutes.
-      </div>
+      <div style={{marginTop: 70, fontSize: 64, fontWeight: 800, color: C.sageDeep}}>{t.unlock.title}</div>
+      <div style={{marginTop: 18, fontSize: 42, color: C.muted, textAlign: 'center'}}>{t.unlock.msg}</div>
     </div>
   );
 };
 
 // ── Prayer tracker ─────────────────────────────────────────────────────
-const TrackerScene: React.FC = () => {
+export const TrackerScene: React.FC = () => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const prayers = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+  const {t} = useVid();
   const filled = [0, 1, 2];
   return (
     <div style={{flex: 1, padding: '6px 50px 0'}}>
       <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '22px 8px'}}>
-        <span style={{fontFamily: AMIRI, fontSize: 54, color: C.sageDeep}}>Niyyah</span>
+        <span style={{fontFamily: AMIRI, fontSize: 54, color: C.sageDeep}}>{t.brand}</span>
         <span style={{fontSize: 34, color: C.tag, letterSpacing: 6}}>◧ ▷</span>
       </div>
-      <div style={{fontFamily: AMIRI, fontSize: 60, color: C.sageDeep, marginTop: 8}}>Assalamu alaykum</div>
-      <div style={{fontSize: 36, color: C.muted, marginTop: 6}}>Set your intention for today.</div>
+      <div style={{fontFamily: AMIRI, fontSize: 60, color: C.sageDeep, marginTop: 8}}>{t.tracker.greeting}</div>
+      <div style={{fontSize: 36, color: C.muted, marginTop: 6}}>{t.tracker.intent}</div>
       <div
         style={{
           marginTop: 38,
@@ -185,8 +196,8 @@ const TrackerScene: React.FC = () => {
           fontWeight: 600,
         }}
       >
-        <span>Asr in 1h 12m</span>
-        <span style={{color: C.faint, fontWeight: 500}}>18 Dhul-Hijjah</span>
+        <span>{t.tracker.next}</span>
+        <span style={{color: C.faint, fontWeight: 500}}>{t.tracker.hijri}</span>
       </div>
       <div
         style={{
@@ -198,11 +209,11 @@ const TrackerScene: React.FC = () => {
         }}
       >
         <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-          <span style={{fontSize: 40, fontWeight: 600, color: C.ink}}>Today's Prayers</span>
-          <span style={{fontSize: 40, fontWeight: 800, color: C.sage}}>3/5</span>
+          <span style={{fontSize: 40, fontWeight: 600, color: C.ink}}>{t.tracker.today}</span>
+          <span style={{fontSize: 40, fontWeight: 800, color: C.sage}}>{t.tracker.score}</span>
         </div>
         <div style={{display: 'flex', justifyContent: 'space-between', marginTop: 42}}>
-          {prayers.map((p, i) => {
+          {t.tracker.prayers.map((p, i) => {
             const on = filled.includes(i);
             const s = on ? spring({frame: f - 18 - i * 12, fps, config: {damping: 12}}) : 0;
             return (
@@ -229,11 +240,7 @@ const TrackerScene: React.FC = () => {
         </div>
       </div>
       <div style={{display: 'flex', gap: 26, marginTop: 32}}>
-        {[
-          ['2', 'Today'],
-          ['14m', 'Reading'],
-          ['7', 'Streak'],
-        ].map(([n, l]) => (
+        {t.tracker.stats.map(([n, l]) => (
           <div
             key={l}
             style={{
@@ -255,14 +262,15 @@ const TrackerScene: React.FC = () => {
 };
 
 // ── Learning ───────────────────────────────────────────────────────────
-const LearningScene: React.FC = () => {
+export const LearningScene: React.FC = () => {
   const f = useCurrentFrame();
+  const {t, lang, font} = useVid();
   const pct = interpolate(f, [10, 74], [0, 12], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const r = 230;
   const circ = 2 * Math.PI * r;
   return (
     <div style={{flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '28px 60px 0'}}>
-      <div style={{alignSelf: 'flex-start', fontSize: 44, fontWeight: 700, color: C.sageDeep}}>My Learning</div>
+      <div style={{alignSelf: 'flex-start', fontSize: 44, fontWeight: 700, color: C.sageDeep}}>{t.learn.title}</div>
       <svg width="560" height="560" style={{marginTop: 46}}>
         <circle cx="280" cy="280" r={r} stroke={C.sageLine} strokeWidth="34" fill="none" />
         <circle
@@ -277,18 +285,16 @@ const LearningScene: React.FC = () => {
           strokeDashoffset={circ * (1 - pct / 100)}
           transform="rotate(-90 280 280)"
         />
-        <text x="280" y="282" textAnchor="middle" fontSize="132" fontWeight="800" fill={C.sageDeep} fontFamily={SANS}>
-          {Math.round(pct)}%
+        <text x="280" y="282" textAnchor="middle" fontSize="132" fontWeight="800" fill={C.sageDeep} fontFamily={font}>
+          {num(lang, Math.round(pct))}
+          {t.learn.pctSuffix}
         </text>
-        <text x="280" y="352" textAnchor="middle" fontSize="40" fill={C.muted} fontFamily={SANS}>
-          of the Qur'an
+        <text x="280" y="352" textAnchor="middle" fontSize="40" fill={C.muted} fontFamily={font}>
+          {t.learn.ofQuran}
         </text>
       </svg>
       <div style={{display: 'flex', gap: 30, marginTop: 58, width: '100%'}}>
-        {[
-          ['748', 'Ayahs read'],
-          ['9', 'Surahs done'],
-        ].map(([n, l]) => (
+        {t.learn.stats.map(([n, l]) => (
           <div
             key={l}
             style={{
@@ -306,10 +312,10 @@ const LearningScene: React.FC = () => {
         ))}
       </div>
       <div style={{alignSelf: 'flex-start', marginTop: 56, fontSize: 36, fontWeight: 700, color: C.ink}}>
-        Completed Surahs
+        {t.learn.completed}
       </div>
       <div style={{display: 'flex', flexWrap: 'wrap', gap: 22, marginTop: 26, alignSelf: 'flex-start'}}>
-        {['Al-Fatiha', 'Al-Ikhlas', 'Al-Falaq', 'An-Nas'].map((s) => (
+        {t.learn.surahs.map((s) => (
           <span
             key={s}
             style={{
@@ -330,9 +336,10 @@ const LearningScene: React.FC = () => {
 };
 
 // ── Qibla ──────────────────────────────────────────────────────────────
-const QiblaScene: React.FC = () => {
+export const QiblaScene: React.FC = () => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
+  const {t, lang} = useVid();
   const angle = interpolate(spring({frame: f - 10, fps, config: {damping: 14}}), [0, 1], [42, 138]);
   return (
     <div
@@ -346,7 +353,7 @@ const QiblaScene: React.FC = () => {
       }}
     >
       <div style={{alignSelf: 'flex-start', fontSize: 44, fontWeight: 700, color: C.goldText, marginBottom: 50}}>
-        Qibla
+        {t.qibla.title}
       </div>
       <div style={{position: 'relative', width: 640, height: 640}}>
         <div
@@ -359,10 +366,10 @@ const QiblaScene: React.FC = () => {
             boxShadow: 'inset 0 0 70px rgba(0,0,0,.5)',
           }}
         />
-        <span style={{position: 'absolute', top: 18, left: '50%', transform: 'translateX(-50%)', fontSize: 36, fontWeight: 700, color: C.goldText}}>N</span>
-        <span style={{position: 'absolute', bottom: 18, left: '50%', transform: 'translateX(-50%)', fontSize: 36, fontWeight: 700, color: C.mutedDark}}>S</span>
-        <span style={{position: 'absolute', right: 24, top: '50%', transform: 'translateY(-50%)', fontSize: 36, fontWeight: 700, color: C.mutedDark}}>E</span>
-        <span style={{position: 'absolute', left: 24, top: '50%', transform: 'translateY(-50%)', fontSize: 36, fontWeight: 700, color: C.mutedDark}}>W</span>
+        <span style={{position: 'absolute', top: 18, left: '50%', transform: 'translateX(-50%)', fontSize: 36, fontWeight: 700, color: C.goldText}}>{t.qibla.dir.n}</span>
+        <span style={{position: 'absolute', bottom: 18, left: '50%', transform: 'translateX(-50%)', fontSize: 36, fontWeight: 700, color: C.mutedDark}}>{t.qibla.dir.s}</span>
+        <span style={{position: 'absolute', right: 24, top: '50%', transform: 'translateY(-50%)', fontSize: 36, fontWeight: 700, color: C.mutedDark}}>{t.qibla.dir.e}</span>
+        <span style={{position: 'absolute', left: 24, top: '50%', transform: 'translateY(-50%)', fontSize: 36, fontWeight: 700, color: C.mutedDark}}>{t.qibla.dir.w}</span>
         <div style={{position: 'absolute', inset: 0, transform: `rotate(${angle}deg)`}}>
           <div
             style={{
@@ -396,8 +403,10 @@ const QiblaScene: React.FC = () => {
           </div>
         </div>
         <div style={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center'}}>
-          <div style={{fontSize: 124, fontWeight: 800, color: C.goldText, lineHeight: 1}}>{Math.round(angle)}°</div>
-          <div style={{fontSize: 36, color: C.mutedDark, marginTop: 12}}>to the Kaaba</div>
+          <div style={{fontSize: 124, fontWeight: 800, color: C.goldText, lineHeight: 1, direction: 'ltr'}}>
+            {num(lang, Math.round(angle))}°
+          </div>
+          <div style={{fontSize: 36, color: C.mutedDark, marginTop: 12}}>{t.qibla.toKaaba}</div>
         </div>
       </div>
       <div
@@ -413,10 +422,10 @@ const QiblaScene: React.FC = () => {
           gap: 28,
         }}
       >
-        <div style={{width: 26, height: 26, borderRadius: '50%', background: C.gold}} />
+        <div style={{width: 26, height: 26, borderRadius: '50%', background: C.gold, flex: '0 0 auto'}} />
         <div>
-          <div style={{fontSize: 40, color: C.creamDark, fontWeight: 600}}>Aligned with Makkah</div>
-          <div style={{fontSize: 32, color: C.mutedDark, marginTop: 6}}>Hold flat and turn slowly</div>
+          <div style={{fontSize: 40, color: C.creamDark, fontWeight: 600}}>{t.qibla.aligned}</div>
+          <div style={{fontSize: 32, color: C.mutedDark, marginTop: 6}}>{t.qibla.hold}</div>
         </div>
       </div>
     </div>
@@ -427,13 +436,14 @@ const QiblaScene: React.FC = () => {
 const Outro: React.FC = () => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
+  const {t} = useVid();
   const s = spring({frame: f, fps, config: {damping: 13}});
   return (
     <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center'}}>
       <div style={{transform: `scale(${0.86 + 0.14 * s})`, textAlign: 'center'}}>
         <div style={{fontFamily: AMIRI, fontSize: 180, color: C.goldText, lineHeight: 1}}>نِيّة</div>
         <div style={{fontSize: 84, fontWeight: 800, color: C.goldText, marginTop: 16}}>Niyyah</div>
-        <div style={{fontSize: 44, color: C.mutedDark, marginTop: 26}}>Pause before you scroll.</div>
+        <div style={{fontSize: 44, color: C.mutedDark, marginTop: 26}}>{t.outroSub}</div>
         <div
           style={{
             marginTop: 54,
@@ -446,7 +456,7 @@ const Outro: React.FC = () => {
             fontWeight: 600,
           }}
         >
-          On the App Store
+          {t.outroCta}
         </div>
       </div>
     </AbsoluteFill>
@@ -454,7 +464,8 @@ const Outro: React.FC = () => {
 };
 
 // ── Assembly ───────────────────────────────────────────────────────────
-export const Walkthrough: React.FC = () => {
+const Body: React.FC = () => {
+  const {t} = useVid();
   useAmiri();
   return (
     <AbsoluteFill style={{backgroundColor: '#f1f0ea'}}>
@@ -469,10 +480,10 @@ export const Walkthrough: React.FC = () => {
       <Sequence from={70} durationInFrames={200} name="Gate">
         <Fade dur={200}>
           <Stage>
-            <Headline sub="A moment with the Qur'an first.">
-              Pause before
+            <Headline sub={t.gate.sub}>
+              {t.gate.head[0]}
               <br />
-              you scroll
+              {t.gate.head[1]}
             </Headline>
             <Phone>
               <GateScene />
@@ -484,10 +495,10 @@ export const Walkthrough: React.FC = () => {
       <Sequence from={258} durationInFrames={110} name="Unlock">
         <Fade dur={110}>
           <Stage>
-            <Headline sub="Reading unlocks your apps.">
-              Read — then
+            <Headline sub={t.unlock.sub}>
+              {t.unlock.head[0]}
               <br />
-              continue
+              {t.unlock.head[1]}
             </Headline>
             <Phone>
               <UnlockScene />
@@ -499,10 +510,10 @@ export const Walkthrough: React.FC = () => {
       <Sequence from={356} durationInFrames={150} name="Tracker">
         <Fade dur={150}>
           <Stage>
-            <Headline sub="A gentle home for worship.">
-              Track your five
+            <Headline sub={t.tracker.sub}>
+              {t.tracker.head[0]}
               <br />
-              daily prayers
+              {t.tracker.head[1]}
             </Headline>
             <Phone>
               <TrackerScene />
@@ -514,10 +525,10 @@ export const Walkthrough: React.FC = () => {
       <Sequence from={494} durationInFrames={135} name="Learning">
         <Fade dur={135}>
           <Stage>
-            <Headline sub="True progress through the Qur'an.">
-              Your journey through
+            <Headline sub={t.learn.sub}>
+              {t.learn.head[0]}
               <br />
-              the Qur'an
+              {t.learn.head[1]}
             </Headline>
             <Phone>
               <LearningScene />
@@ -529,10 +540,10 @@ export const Walkthrough: React.FC = () => {
       <Sequence from={617} durationInFrames={150} name="Qibla">
         <Fade dur={150}>
           <Stage dark>
-            <Headline dark sub="A precise compass to the Kaaba.">
-              Find the Qibla,
+            <Headline dark sub={t.qibla.sub}>
+              {t.qibla.head[0]}
               <br />
-              wherever you are
+              {t.qibla.head[1]}
             </Headline>
             <Phone dark>
               <QiblaScene />
@@ -549,5 +560,13 @@ export const Walkthrough: React.FC = () => {
         </Fade>
       </Sequence>
     </AbsoluteFill>
+  );
+};
+
+export const Walkthrough: React.FC<{lang?: Lang; fmt?: Fmt}> = ({lang = 'en', fmt = 'store'}) => {
+  return (
+    <VidProvider lang={lang} fmt={fmt}>
+      <Body />
+    </VidProvider>
   );
 };
