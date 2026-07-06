@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "flutter-web",
+      "runtimeExecutable": "flutter",
+      "runtimeArgs": ["run", "-d", "chrome", "--web-port", "8080"],
+      "port": 8080
+    },
+    {
+      "name": "build-runner-watch",
+      "runtimeExecutable": "dart",
+      "runtimeArgs": ["run", "build_runner", "watch", "--delete-conflicting-outputs"],
+      "port": 0
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "niyyah-walkthrough",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion app-preview walkthrough for Niyyah",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render src/index.ts Walkthrough out/walkthrough.mp4 --codec=h264",
+    "reel:en": "remotion render src/index.ts ReelEN out/reel_en.mp4 --codec=h264",
+    "reel:ar": "remotion render src/index.ts ReelAR out/reel_ar.mp4 --codec=h264",
+    "reels": "npm run reel:en && npm run reel:ar",
+    "release:en": "remotion render src/index.ts ReleaseEN out/release_en.mp4 --codec=h264 --crf=16",
+    "release:ar": "remotion render src/index.ts ReleaseAR out/release_ar.mp4 --codec=h264 --crf=16",
+    "trailers": "npm run release:en && npm run release:ar",
+    "posts": "bash render-posts.sh",
+    "still": "remotion still src/index.ts Walkthrough out/frame.png --frame=120"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "typescript": "^5.5.0"
+  }
+}

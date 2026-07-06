@@ -107,6 +107,14 @@ class PreferencesRepository {
     ));
   }
 
+  Future<void> updateTranslationLanguage(String languageCode) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      translationLanguage: Value(languageCode),
+    ));
+  }
+
   Future<void> updateStreak(int current, String lastDate) async {
     await (_db.update(_db.userPreferences)
           ..where((t) => t.id.equals(1)))
@@ -122,5 +130,162 @@ class PreferencesRepository {
         .where((s) => s.isNotEmpty)
         .map((s) => GateContentType.fromDbValue(s.trim()))
         .toList();
+  }
+
+  // ── Notification Preferences ──────────────────────────────────────────
+
+  Future<void> updateNotifyPrayerTimes(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyPrayerTimes: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifyPrayerAdvanceMinutes(int minutes) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyPrayerAdvanceMinutes: Value(minutes),
+    ));
+  }
+
+  Future<void> updateNotifyFridayKahf(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyFridayKahf: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifyFastingDays(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyFastingDays: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifyMorningAdhkar(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyMorningAdhkar: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifyEveningAdhkar(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyEveningAdhkar: Value(value),
+    ));
+  }
+
+  // ── Extended Notification Preferences (v3) ──────────────────────────────
+
+  Future<void> updateNotifyBedtimeDua(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyBedtimeDua: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifySurahMulk(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifySurahMulk: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifyDuhaReminder(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyDuhaReminder: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifyTahajjud(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyTahajjud: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifyDhikrAfterPrayer(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyDhikrAfterPrayer: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifyDuaForParents(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyDuaForParents: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifyFridaySalawat(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyFridaySalawat: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifyFridayDuaHour(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyFridayDuaHour: Value(value),
+    ));
+  }
+
+  Future<void> updateNotifyDidYouKnow(bool value) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      notifyDidYouKnow: Value(value),
+    ));
+  }
+
+  Future<void> updateBedtime(int hour, int minute) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      bedtimeHour: Value(hour),
+      bedtimeMinute: Value(minute),
+    ));
+  }
+
+  Future<void> updatePrayerCalculationMethod(String method) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      prayerCalculationMethod: Value(method),
+    ));
+  }
+
+  Future<void> updateMadhab(String madhab) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      madhab: Value(madhab),
+    ));
+  }
+
+  Future<void> updateLocale(String localeCode) async {
+    await (_db.update(_db.userPreferences)
+          ..where((t) => t.id.equals(1)))
+        .write(UserPreferencesCompanion(
+      localeCode: Value(localeCode),
+    ));
   }
 }

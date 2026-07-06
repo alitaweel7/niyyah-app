@@ -30,4 +30,31 @@ abstract class AppGateService {
 
   /// Whether the gating service is currently running.
   Future<bool> isRunning();
+
+  /// Show the platform-native app picker (iOS: FamilyActivityPicker).
+  /// Returns the number of apps/categories selected.
+  Future<int> showAppPicker();
+
+  /// Check if the shield action extension signaled that a gate reading is needed.
+  Future<bool> checkGateRequested();
+
+  /// Open an app by URL scheme (e.g., "instagram://").
+  Future<bool> openApp(String urlScheme);
+
+  /// Get the name of the last app that was shielded (saved by ShieldConfigurationExtension).
+  Future<String?> getLastBlockedAppName();
+
+  /// Sync key preferences to App Groups so shield extensions can display them.
+  Future<void> syncPrefsToAppGroup({
+    required int gateDurationSeconds,
+    required int unlockDurationSeconds,
+    String? preferredContentType,
+  });
+
+  /// Get navigation info set by the notification tap (skip_picker, content_type, blocked_app_name).
+  Future<Map<String, dynamic>> getGateNavigationInfo();
+
+  /// Sync a small set of short ayahs (a JSON array of {"ar","en"} objects) to
+  /// App Groups so the iOS shield can display a rotating ayah.
+  Future<void> syncShieldAyahs(String ayahsJson);
 }

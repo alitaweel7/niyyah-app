@@ -2,10 +2,14 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/app_selection/screens/app_selection_screen.dart';
 import '../../features/dashboard/screens/dashboard_screen.dart';
+import '../../features/gate/screens/gate_picker_screen.dart';
 import '../../features/gate/screens/gate_screen.dart';
 import '../../features/history/screens/history_screen.dart';
 import '../../features/learning/screens/learning_screen.dart';
 import '../../features/onboarding/screens/onboarding_screen.dart';
+import '../../features/qibla/screens/qibla_screen.dart';
+import '../../features/settings/screens/notification_settings_screen.dart';
+import '../../features/settings/screens/privacy_policy_screen.dart';
 import '../../features/settings/screens/settings_screen.dart';
 import '../../shared/widgets/main_shell.dart';
 
@@ -17,6 +21,9 @@ abstract final class AppRoutes {
   static const settings = '/settings';
   static const gate = '/gate';
   static const appSelection = '/app-selection';
+  static const privacyPolicy = '/privacy-policy';
+  static const notificationSettings = '/notification-settings';
+  static const qibla = '/qibla';
 }
 
 GoRouter createRouter({required bool onboardingCompleted}) {
@@ -61,7 +68,19 @@ GoRouter createRouter({required bool onboardingCompleted}) {
         path: AppRoutes.gate,
         builder: (context, state) {
           final extra = state.extra as Map<String, dynamic>?;
-          return GateScreen(
+          final skipPicker = extra?['skipPicker'] == true;
+          final contentType = extra?['contentType'] as String?;
+
+          // If notification set skip_picker + content_type, go straight to reading
+          if (skipPicker && contentType != null) {
+            return GateScreen(
+              blockedAppId: extra?['blockedAppId'] as int?,
+              blockedAppName: extra?['blockedAppName'] as String?,
+              initialContentType: contentType,
+            );
+          }
+
+          return GatePickerScreen(
             blockedAppId: extra?['blockedAppId'] as int?,
             blockedAppName: extra?['blockedAppName'] as String?,
           );
@@ -70,6 +89,18 @@ GoRouter createRouter({required bool onboardingCompleted}) {
       GoRoute(
         path: AppRoutes.appSelection,
         builder: (context, state) => const AppSelectionScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.privacyPolicy,
+        builder: (context, state) => const PrivacyPolicyScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.notificationSettings,
+        builder: (context, state) => const NotificationSettingsScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.qibla,
+        builder: (context, state) => const QiblaScreen(),
       ),
     ],
   );

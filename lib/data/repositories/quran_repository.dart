@@ -109,6 +109,54 @@ class QuranRepository {
       nextAyah: nextAyah,
     );
   }
+
+  // ── Translations ────────────────────────────────────────────────────────
+
+  /// Get translation text for a specific ayah in a given language.
+  Future<String?> getTranslation(int ayahId, String languageCode) async {
+    if (languageCode == 'en') {
+      final ayah = await (_db.select(_db.quranAyahs)
+            ..where((t) => t.id.equals(ayahId)))
+          .getSingleOrNull();
+      return ayah?.textTranslationEn;
+    }
+
+    final result = await (_db.select(_db.quranTranslations)
+          ..where((t) =>
+              t.ayahId.equals(ayahId) &
+              t.languageCode.equals(languageCode)))
+        .getSingleOrNull();
+    return result?.translationText;
+  }
+
+  /// Get translations for multiple ayahs at once (batch).
+  Future<Map<int, String>> getTranslationsForAyahs(
+      List<int> ayahIds, String languageCode) async {
+    if (languageCode == 'en') {
+      final ayahs = await (_db.select(_db.quranAyahs)
+            ..where((t) => t.id.isIn(ayahIds)))
+          .get();
+      return {
+        for (final a in ayahs)
+          if (a.textTranslationEn != null) a.id: a.textTranslationEn!,
+      };
+    }
+
+    final results = await (_db.select(_db.quranTranslations)
+          ..where((t) =>
+              t.ayahId.isIn(ayahIds) &
+              t.languageCode.equals(languageCode)))
+        .get();
+    return {for (final r in results) r.ayahId: r.translationText};
+  }
+
+  /// Get list of available translation languages.
+  Future<List<AvailableLanguage>> getAvailableLanguages() {
+    return (_db.select(_db.availableLanguages)
+          ..where((t) => t.isDownloaded.equals(true))
+          ..orderBy([(t) => OrderingTerm.asc(t.displayName)]))
+        .get();
+  }
 }
 
 // ── Content models ────────────────────────────────────────────────────────

@@ -11,7 +11,7 @@ abstract final class AppTheme {
       colorScheme: const ColorScheme.light(
         primary: AppColors.primaryLight,
         onPrimary: Colors.white,
-        secondary: AppColors.gold,
+        secondary: AppColors.beige,
         surface: AppColors.surfaceLight,
         onSurface: AppColors.onSurfaceLight,
         surfaceContainerHighest: AppColors.surfaceVariantLight,
@@ -28,13 +28,14 @@ abstract final class AppTheme {
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: AppColors.onBackgroundLight,
+          letterSpacing: 0.3,
         ),
       ),
       cardTheme: CardThemeData(
         color: AppColors.surfaceLight,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(18),
           side: const BorderSide(color: AppColors.dividerLight, width: 0.5),
         ),
       ),
@@ -45,11 +46,26 @@ abstract final class AppTheme {
           elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(14),
           ),
           textStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
+            letterSpacing: 0.2,
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.primaryLight,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+          side: const BorderSide(color: AppColors.primaryLight, width: 1),
+          textStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -76,6 +92,23 @@ abstract final class AppTheme {
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
         unselectedLabelStyle: TextStyle(fontSize: 12),
+      ),
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return Colors.white;
+          }
+          return AppColors.onSurfaceVariantLight;
+        }),
+        trackColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primaryLight;
+          }
+          return AppColors.dividerLight;
+        }),
+      ),
+      listTileTheme: const ListTileThemeData(
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
       ),
     );
   }
@@ -105,13 +138,14 @@ abstract final class AppTheme {
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: AppColors.onBackgroundDark,
+          letterSpacing: 0.3,
         ),
       ),
       cardTheme: CardThemeData(
         color: AppColors.surfaceDark,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(18),
           side: const BorderSide(color: AppColors.dividerDark, width: 0.5),
         ),
       ),
@@ -122,11 +156,26 @@ abstract final class AppTheme {
           elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(14),
           ),
           textStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
+            letterSpacing: 0.2,
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.primaryDark,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+          side: const BorderSide(color: AppColors.primaryDark, width: 1),
+          textStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -153,6 +202,23 @@ abstract final class AppTheme {
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
         unselectedLabelStyle: TextStyle(fontSize: 12),
+      ),
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.backgroundDark;
+          }
+          return AppColors.onSurfaceVariantDark;
+        }),
+        trackColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primaryDark;
+          }
+          return AppColors.dividerDark;
+        }),
+      ),
+      listTileTheme: const ListTileThemeData(
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
       ),
     );
   }

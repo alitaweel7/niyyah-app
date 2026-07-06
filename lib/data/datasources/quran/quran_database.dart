@@ -1,12 +1,6 @@
-import 'dart:io';
-
 import 'package:drift/drift.dart';
-import 'package:drift/native.dart';
-import 'package:flutter/services.dart';
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
 
-import '../../../core/constants/app_constants.dart';
+import 'quran_connection.dart' as conn;
 
 part 'quran_database.g.dart';
 
@@ -48,15 +42,61 @@ class Duas extends Table {
       boolean().withDefault(const Constant(false))();
 }
 
+class IslamicTeachings extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get title => text()();
+  TextColumn get hadithArabic => text().nullable()();
+  TextColumn get hadithTranslation => text().nullable()();
+  TextColumn get explanation => text()();
+  TextColumn get sourceReference => text()();
+  TextColumn get category => text()();
+  BoolColumn get isPremium =>
+      boolean().withDefault(const Constant(false))();
+}
+
+class QuranTranslations extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get ayahId => integer()();
+  TextColumn get languageCode => text()();
+  TextColumn get translationText => text()();
+}
+
+class AvailableLanguages extends Table {
+  TextColumn get code => text()();
+  TextColumn get displayName => text()();
+  BoolColumn get isDownloaded =>
+      boolean().withDefault(const Constant(false))();
+
+  @override
+  Set<Column> get primaryKey => {code};
+}
+
+class ProphetStories extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get prophetNameArabic => text()();
+  TextColumn get prophetNameEnglish => text()();
+  IntColumn get segmentNumber => integer()();
+  IntColumn get totalSegments => integer()();
+  TextColumn get title => text()();
+  TextColumn get bodyText => text()();
+  TextColumn get sourceReference => text()();
+  BoolColumn get isPremium =>
+      boolean().withDefault(const Constant(false))();
+}
+
 // ── Database ────────────────────────────────────────────────────────────────
 
 @DriftDatabase(tables: [
   QuranAyahs,
   QuranSurahs,
   Duas,
+  IslamicTeachings,
+  ProphetStories,
+  QuranTranslations,
+  AvailableLanguages,
 ])
 class QuranDatabase extends _$QuranDatabase {
-  QuranDatabase() : super(_openQuranDb());
+  QuranDatabase() : super(conn.openQuranDb());
 
   QuranDatabase.forTesting(super.e);
 
@@ -71,20 +111,4 @@ class QuranDatabase extends _$QuranDatabase {
       },
     );
   }
-}
-
-LazyDatabase _openQuranDb() {
-  return LazyDatabase(() async {
-    final dir = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dir.path, AppConstants.quranDbName));
-
-    if (!await file.exists()) {
-      // Copy bundled database from assets
-      final data = await rootBundle.load('assets/quran/${AppConstants.quranDbName}');
-      final bytes = data.buffer.asUint8List();
-      await file.writeAsBytes(bytes, flush: true);
-    }
-
-    return NativeDatabase.createInBackground(file);
-  });
 }

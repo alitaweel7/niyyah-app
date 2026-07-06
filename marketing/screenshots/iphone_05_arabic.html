@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<link rel="stylesheet" href="_shared.css">
+<style>
+  .headline { font-family:'Amiri',serif; letter-spacing:0; }
+  .content { padding:0 60px; display:flex; flex-direction:column; }
+  .greet { font-family:'Amiri',serif; font-size:74px; color:#e3c98f; margin-top:24px; }
+  .greetsub { font-size:42px; color:#b3aa92; margin-top:8px; font-family:'Amiri',serif; }
+  .pbar { margin-top:40px; display:flex; justify-content:space-between; align-items:center;
+          background:#14342479; border:2px solid #20402f; border-radius:34px; padding:34px 40px;
+          font-size:40px; color:#e3c98f; font-weight:600; font-family:'Amiri',serif; }
+  .pbar .hijri { color:#9aa890; font-weight:500; font-size:36px; }
+  .trk { margin-top:36px; padding:44px 40px; }
+  .trkhead { display:flex; justify-content:space-between; align-items:center; }
+  .trktitle { font-size:46px; font-weight:700; color:#ece6d6; font-family:'Amiri',serif; }
+  .trkcount { font-size:46px; font-weight:800; color:#e3c98f; }
+  .row5 { display:flex; justify-content:space-between; margin-top:44px; }
+  .pcell { display:flex; flex-direction:column; align-items:center; gap:18px; font-size:34px; color:#9aa890; font-family:'Amiri',serif; }
+  .dot { width:104px; height:104px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:48px; }
+  .dot.on { background:#D8B878; color:#0c2019; }
+  .dot.off { border:4px solid #2c5240; color:#3f6b50; }
+  .pcell.on { color:#e3c98f; font-weight:700; }
+  .stats { display:flex; gap:30px; margin-top:40px; }
+  .stat { flex:1; padding:40px 0; text-align:center; }
+  .statnum { font-size:64px; font-weight:800; color:#e3c98f; }
+  .statlbl { font-size:34px; color:#9aa890; margin-top:8px; font-family:'Amiri',serif; }
+</style></head>
+<body class="dark">
+  <div class="headline">التطبيق بالكامل<br>باللغة العربية</div>
+  <div class="sub">واجهة عربية أصيلة، من اليمين إلى اليسار.</div>
+  <div class="phone"><div class="screen">
+    <div class="island"></div>
+    <div class="statusbar"><span>٩:٤١</span><span>􀙇 􀛨 􀋨</span></div>
+    <div class="appbar"><span class="brand">نِيّة</span><span class="appicons">􀎶&nbsp;&nbsp;􀊃</span></div>
+    <div class="content">
+      <div class="greet">السلام عليكم</div>
+      <div class="greetsub">اضبط نيّتك لهذا اليوم.</div>
+      <div class="pbar"><span>☾&nbsp;&nbsp;العصر بعد ساعة و ١٢ دقيقة</span><span class="hijri">١٨ ذو الحجة</span></div>
+      <div class="trk card">
+        <div class="trkhead"><span class="trktitle">صلوات اليوم</span><span class="trkcount">٣/٥</span></div>
+        <div class="row5">
+          <div class="pcell on"><div class="dot on">✓</div>الفجر</div>
+          <div class="pcell on"><div class="dot on">✓</div>الظهر</div>
+          <div class="pcell on"><div class="dot on">✓</div>العصر</div>
+          <div class="pcell"><div class="dot off">☾</div>المغرب</div>
+          <div class="pcell"><div class="dot off">☾</div>العشاء</div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat card"><div class="statnum">٢</div><div class="statlbl">اليوم</div></div>
+        <div class="stat card"><div class="statnum">١٤ د</div><div class="statlbl">القراءة</div></div>
+        <div class="stat card"><div class="statnum">٧</div><div class="statlbl">التتابع</div></div>
+      </div>
+    </div>
+  </div></div>
+</body></html>
