@@ -1,7 +1,7 @@
 name: aya_unlock
 description: "Set your niyyah before you scroll — a spiritual app that gates social media behind Quran and Dua reading."
 publish_to: 'none'
-version: 1.1.0+8
+version: 1.1.1+9
 
 environment:
   sdk: ^3.11.3

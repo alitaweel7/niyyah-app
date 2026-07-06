@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/di/providers.dart';
 import '../../../core/quran/basmala.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/utils/streak_logic.dart';
 import '../../../l10n/app_strings.dart';
 import '../../../data/datasources/quran/quran_database.dart';
 import '../../../data/models/gate_content_type.dart';
@@ -482,18 +483,18 @@ class _GateScreenState extends ConsumerState<GateScreen> {
       // Record distinct ayahs read + an append-only reading event per block.
       await _recordProgress();
 
-      // Update streak
+      // Update streak (pure, DST/timezone-safe arithmetic — see streak_logic.dart)
       final prefsRepo = ref.read(preferencesRepositoryProvider);
       final prefs = await prefsRepo.getPreferences();
-      final today =
-          '${DateTime.now().year}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')}';
-
-      if (prefs.streakLastDate == today) {
-        // Already counted today
-      } else if (prefs.streakLastDate == _yesterdayString()) {
-        await prefsRepo.updateStreak(prefs.streakCurrent + 1, today);
-      } else {
-        await prefsRepo.updateStreak(1, today);
+      final now = DateTime.now();
+      final today = formatStreakDate(now);
+      final streak = nextStreak(
+        lastDate: prefs.streakLastDate,
+        current: prefs.streakCurrent,
+        now: now,
+      );
+      if (streak != prefs.streakCurrent || prefs.streakLastDate != today) {
+        await prefsRepo.updateStreak(streak, today);
       }
     }
 
@@ -574,11 +575,6 @@ class _GateScreenState extends ConsumerState<GateScreen> {
       if (name.contains(entry.key)) return entry.value;
     }
     return null;
-  }
-
-  String _yesterdayString() {
-    final yesterday = DateTime.now().subtract(const Duration(days: 1));
-    return '${yesterday.year}-${yesterday.month.toString().padLeft(2, '0')}-${yesterday.day.toString().padLeft(2, '0')}';
   }
 
   String _formatTime(int seconds) {

@@ -21,6 +21,27 @@ private func gateLog(_ message: @autoclosure () -> String) {
     // Set ourselves as the notification delegate so we handle taps
     UNUserNotificationCenter.current().delegate = self
 
+    // Re-lock enforcement (layer 3): whenever the app becomes active or the
+    // system clock jumps (manual change, DST, timezone), verify the lock state.
+    // Notification-based so it fires in both the scene-based and classic
+    // lifecycles; enforcement is idempotent and never removes shields.
+    if #available(iOS 16.0, *) {
+      NotificationCenter.default.addObserver(
+        forName: UIApplication.didBecomeActiveNotification,
+        object: nil,
+        queue: .main
+      ) { _ in
+        FamilyControlsBridge.shared.enforceLockState(reason: "did_become_active")
+      }
+      NotificationCenter.default.addObserver(
+        forName: UIApplication.significantTimeChangeNotification,
+        object: nil,
+        queue: .main
+      ) { _ in
+        FamilyControlsBridge.shared.enforceLockState(reason: "time_change")
+      }
+    }
+
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 

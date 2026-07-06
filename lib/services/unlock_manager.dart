@@ -74,6 +74,11 @@ class UnlockManager {
   }
 
   /// Grant a temporary unlock after gate completion.
+  ///
+  /// NOTE: currently unused on iOS — the gate screen calls
+  /// [AppGateService.grantTemporaryUnlock] directly and re-locking is owned
+  /// entirely by the native layer (it must not depend on the Flutter engine
+  /// being alive). Kept for a future Android flow.
   Future<void> grantUnlock({
     required int gateSessionId,
     required int blockedAppId,
